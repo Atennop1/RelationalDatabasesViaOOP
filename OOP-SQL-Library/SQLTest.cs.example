@@ -1,0 +1,32 @@
+using LearningStuff.PostgreSQL.Core;
+using UnityEngine;
+
+namespace LearningStuff.PostgreSQL
+{
+    public sealed class SQLTest
+    {
+        private void Awake()
+        {
+            var sqlConnector = new SQLConnector(@"Server=your server;Port=your port;User Id=your user id;Password=your password;Database=your DB name");
+            var sqlCommandExecutor = new SQLCommandsExecutor(sqlConnector); //object for executing any commands, base for other functional classes
+            var sqlParametersStringBuilder = new SQLParametersStringBuilder(); //object for build parameters string for sql requests
+                                    
+            var sqlDataReader = new SQLDataReader(sqlCommandExecutor); //use reader for reading data from DB using sql requests
+            var sqlDataWriter = new SQLDataWriter(sqlCommandExecutor, sqlParametersStringBuilder); //use writer to write any data to your DB using SQLData struct
+            var sqlDataDeleter = new SQLDataDeleter(sqlCommandExecutor, sqlParametersStringBuilder); //use deleter for deleting data
+            
+            var writingData = new SQLData[] { new("age", 19), new("first_name", "Anatoliy"), new("last_name", "Oleynikov") }; //data for DB "humans"
+            sqlDataWriter.WriteData("humans", writingData); //writing data
+                        
+            var data = sqlDataReader.GetData("select * from humans"); //reading all data from DB
+            
+            for (var i = 0; i < data.Rows.Count; i++) //loop for show all peoples info in "humans" DB
+                Debug.Log($"People {i + 1}:\nAge: {data.Rows[i]["age"]}\nFirst Name: {data.Rows[i]["first_name"]}\nLast Name: {data.Rows[i]["last_name"]}");
+            
+            sqlDataDeleter.DeleteData("humans", writingData); //delete added human from DB
+            
+            //you will most likely be satisfied with the three main components of this tool
+            //but if not, then use the SQLCommandExecutor class and execute any commands directly ;) 
+        }
+    }
+}
