@@ -5,6 +5,11 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <RootNamespace>LibrarySQL</RootNamespace>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Title>Simple-ORM</Title>
+        <Authors>Atennop</Authors>
+        <Description>Simple ORM which I created when was bored</Description>
+        <RepositoryUrl>https://github.com/Atennop1/OOP-SQL-Library</RepositoryUrl>
     </PropertyGroup>
 
     <ItemGroup>

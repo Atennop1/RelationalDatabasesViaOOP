@@ -3,7 +3,7 @@ using Npgsql;
 
 namespace LibrarySQL
 {
-    public sealed class SQLConnector
+    public sealed class SQLConnector : ISQLConnector
     {
         private readonly NpgsqlConnection _sqlConnection;
 

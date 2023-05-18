@@ -2,11 +2,11 @@
 
 namespace LibrarySQL
 {
-    public sealed class SQLDataReader
+    public sealed class SQLDataReader : ISQLDataReader
     {
-        private readonly SQLCommandsExecutor _sqlCommandsExecutor;
+        private readonly ISQLCommandsExecutor _sqlCommandsExecutor;
 
-        public SQLDataReader(SQLCommandsExecutor sqlCommandsExecutor) 
+        public SQLDataReader(ISQLCommandsExecutor sqlCommandsExecutor) 
             => _sqlCommandsExecutor = sqlCommandsExecutor ?? throw new ArgumentNullException(nameof(sqlCommandsExecutor));
 
         public DataTable GetData(string sqlRequest)

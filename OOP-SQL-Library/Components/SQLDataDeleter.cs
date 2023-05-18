@@ -2,18 +2,18 @@
 
 namespace LibrarySQL
 {
-    public sealed class SQLDataDeleter
+    public sealed class SQLDataDeleter : ISQLDataDeleter
     {
-        private readonly SQLCommandsExecutor _sqlCommandsExecutor;
-        private readonly SQLParametersStringBuilder _sqlParametersStringBuilder;
+        private readonly ISQLCommandsExecutor _sqlCommandsExecutor;
+        private readonly ISQLParametersStringBuilder _sqlParametersStringBuilder;
 
-        public SQLDataDeleter(SQLCommandsExecutor sqlCommandsExecutor, SQLParametersStringBuilder sqlParametersStringBuilder)
+        public SQLDataDeleter(ISQLCommandsExecutor sqlCommandsExecutor, ISQLParametersStringBuilder sqlParametersStringBuilder)
         {
             _sqlParametersStringBuilder = sqlParametersStringBuilder ?? throw new ArgumentNullException(nameof(sqlParametersStringBuilder));
             _sqlCommandsExecutor = sqlCommandsExecutor ?? throw new ArgumentNullException(nameof(sqlCommandsExecutor));
         }
 
-        public void DeleteData(string databaseName, SQLArgument[] sqlArguments)
+        public void DeleteData(string databaseName, ISQLArgument[] sqlArguments)
         {
             if (databaseName == null)
                 throw new ArgumentNullException(nameof(databaseName));

@@ -2,7 +2,7 @@
 
 namespace LibrarySQL
 {
-    public sealed class SQLParametersStringBuilder
+    public sealed class SQLParametersStringBuilder : ISQLParametersStringBuilder
     {
         public string BuildParameters(string[] names, string delimiter)
         {

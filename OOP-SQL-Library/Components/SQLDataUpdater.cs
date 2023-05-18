@@ -2,18 +2,18 @@
 
 namespace LibrarySQL
 {
-    public sealed class SQLDataUpdater
+    public sealed class SQLDataUpdater : ISQLDataUpdater
     {
-        private readonly SQLCommandsExecutor _sqlCommandsExecutor;
-        private readonly SQLParametersStringBuilder _sqlParametersStringBuilder;
+        private readonly ISQLCommandsExecutor _sqlCommandsExecutor;
+        private readonly ISQLParametersStringBuilder _sqlParametersStringBuilder;
 
-        public SQLDataUpdater(SQLCommandsExecutor sqlCommandsExecutor, SQLParametersStringBuilder sqlParametersStringBuilder)
+        public SQLDataUpdater(ISQLCommandsExecutor sqlCommandsExecutor, ISQLParametersStringBuilder sqlParametersStringBuilder)
         {
             _sqlCommandsExecutor = sqlCommandsExecutor ?? throw new ArgumentNullException(nameof(sqlCommandsExecutor));
             _sqlParametersStringBuilder = sqlParametersStringBuilder ?? throw new ArgumentNullException(nameof(sqlParametersStringBuilder));
         }
 
-        public void UpdateData(string databaseName, SQLArgument[] argumentsThatChanging, SQLArgument[] argumentsForWhichChanging)
+        public void UpdateData(string databaseName, ISQLArgument[] argumentsThatChanging, ISQLArgument[] argumentsForWhichChanging)
         {
             if (databaseName == null)
                 throw new ArgumentNullException(nameof(databaseName));

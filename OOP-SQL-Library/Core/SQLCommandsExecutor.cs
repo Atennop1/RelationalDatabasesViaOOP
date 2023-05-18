@@ -2,11 +2,11 @@
 
 namespace LibrarySQL
 {
-    public sealed class SQLCommandsExecutor
+    public sealed class SQLCommandsExecutor : ISQLCommandsExecutor
     {
-        private readonly SQLConnector _connector;
+        private readonly ISQLConnector _connector;
 
-        public SQLCommandsExecutor(SQLConnector connector) 
+        public SQLCommandsExecutor(ISQLConnector connector) 
             => _connector = connector ?? throw new ArgumentException("Connector can't be null");
 
         public NpgsqlDataReader ExecuteReader(string commandText)

@@ -1,6 +1,6 @@
 ﻿namespace LibrarySQL
 {
-    public struct SQLArgument
+    public struct SQLArgument : ISQLArgument
     {
         public string Name { get; }
         public object Value { get; }

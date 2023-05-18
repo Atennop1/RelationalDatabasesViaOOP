@@ -2,18 +2,18 @@
 
 namespace LibrarySQL
 {
-    public sealed class SQLDataWriter
+    public sealed class SQLDataWriter : ISQLDataWriter
     {
-        private readonly SQLCommandsExecutor _sqlCommandsExecutor;
-        private readonly SQLParametersStringBuilder _sqlParametersStringBuilder;
+        private readonly ISQLCommandsExecutor _sqlCommandsExecutor;
+        private readonly ISQLParametersStringBuilder _sqlParametersStringBuilder;
 
-        public SQLDataWriter(SQLCommandsExecutor sqlCommandsExecutor, SQLParametersStringBuilder sqlParametersStringBuilder)
+        public SQLDataWriter(ISQLCommandsExecutor sqlCommandsExecutor, ISQLParametersStringBuilder sqlParametersStringBuilder)
         {
             _sqlParametersStringBuilder = sqlParametersStringBuilder ?? throw new ArgumentNullException(nameof(sqlParametersStringBuilder));
             _sqlCommandsExecutor = sqlCommandsExecutor ?? throw new ArgumentNullException(nameof(sqlCommandsExecutor));
         }
 
-        public void WriteData(string databaseName, SQLArgument[] sqlArguments)
+        public void WriteData(string databaseName, ISQLArgument[] sqlArguments)
         {
             if (databaseName == null)
                 throw new ArgumentNullException(nameof(databaseName));
