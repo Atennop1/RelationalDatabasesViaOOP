@@ -14,7 +14,7 @@ namespace LibrarySQL
             _sqlParametersStringFactory = sqlParametersStringFactory ?? throw new ArgumentNullException(nameof(sqlParametersStringFactory));
         }
 
-        public DataTable GetData(string databaseName, string[] columnsNames, SQLArgument[] selectingArguments)
+        public DataTable GetData(string databaseName, string[] columnsNames, SQLArgument[] argumentsByWhichSelecting)
         {
             if (databaseName == null)
                 throw new ArgumentNullException(nameof(databaseName));
@@ -22,18 +22,18 @@ namespace LibrarySQL
             if (columnsNames == null)
                 throw new ArgumentNullException(nameof(columnsNames));
 
-            if (selectingArguments == null)
-                throw new ArgumentNullException(nameof(selectingArguments));
+            if (argumentsByWhichSelecting == null)
+                throw new ArgumentNullException(nameof(argumentsByWhichSelecting));
 
             var stringBuilder = new StringBuilder();
             stringBuilder.Append("SELECT ");
             stringBuilder.Append(columnsNames.Length == 0 ? "*" : _sqlParametersStringFactory.Create(columnsNames, ", "));
             stringBuilder.Append($" FROM {databaseName}");
 
-            if (selectingArguments.Length != 0)
+            if (argumentsByWhichSelecting.Length != 0)
             {
                 stringBuilder.Append(" WHERE ");
-                stringBuilder.Append(_sqlParametersStringFactory.Create(selectingArguments.Select(argument => $"{argument.Name} = {argument.Value}").ToArray(), " AND "));
+                stringBuilder.Append(_sqlParametersStringFactory.Create(argumentsByWhichSelecting.Select(argument => $"{argument.Name} = {argument.Value}").ToArray(), " AND "));
             }
             
             var dataReader = _sqlCommandsExecutor.ExecuteReader(stringBuilder.ToString());

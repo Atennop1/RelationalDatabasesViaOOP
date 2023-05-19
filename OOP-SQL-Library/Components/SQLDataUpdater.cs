@@ -13,7 +13,7 @@ namespace LibrarySQL
             _sqlParametersStringFactory = isqlParametersStringFactory ?? throw new ArgumentNullException(nameof(isqlParametersStringFactory));
         }
 
-        public void UpdateData(string databaseName, ISQLArgument[] argumentsThatChanging, ISQLArgument[] argumentsForWhichChanging)
+        public void UpdateData(string databaseName, ISQLArgument[] argumentsThatChanging, ISQLArgument[] argumentsByWhichChanging)
         {
             if (databaseName == null)
                 throw new ArgumentNullException(nameof(databaseName));
@@ -21,8 +21,8 @@ namespace LibrarySQL
             if (argumentsThatChanging == null || argumentsThatChanging.Length == 0)
                 throw new ArgumentNullException(nameof(argumentsThatChanging));
             
-            if (argumentsForWhichChanging == null || argumentsForWhichChanging.Length == 0)
-                throw new ArgumentNullException(nameof(argumentsForWhichChanging));
+            if (argumentsByWhichChanging == null || argumentsByWhichChanging.Length == 0)
+                throw new ArgumentNullException(nameof(argumentsByWhichChanging));
             
             var finalCommandStringBuilder = new StringBuilder();
             finalCommandStringBuilder.Append($"UPDATE {databaseName} SET ");
@@ -31,7 +31,7 @@ namespace LibrarySQL
             if (argumentsThatChanging.Length != 0)
             {
                 finalCommandStringBuilder.Append(" WHERE ");
-                finalCommandStringBuilder.Append(_sqlParametersStringFactory.Create(argumentsForWhichChanging.Select(argument => $"{argument.Name} = {argument.Value}").ToArray(), " AND "));
+                finalCommandStringBuilder.Append(_sqlParametersStringFactory.Create(argumentsByWhichChanging.Select(argument => $"{argument.Name} = {argument.Value}").ToArray(), " AND "));
             }
             
             _sqlCommandsExecutor.ExecuteNonQuery(finalCommandStringBuilder.ToString());

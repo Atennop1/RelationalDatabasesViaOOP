@@ -2,6 +2,6 @@
 {
     public interface ISQLDataDeleter
     {
-        void DeleteData(string databaseName, ISQLArgument[] sqlArguments);
+        void DeleteData(string databaseName, ISQLArgument[] argumentByWhichDeleting);
     }
 }

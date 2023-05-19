@@ -2,6 +2,6 @@
 {
     public interface ISQLDataWriter
     {
-        void WriteData(string databaseName, ISQLArgument[] sqlArguments);
+        void WriteData(string databaseName, ISQLArgument[] argumentsWhichWriting);
     }
 }

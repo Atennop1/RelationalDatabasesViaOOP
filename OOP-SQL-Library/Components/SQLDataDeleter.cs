@@ -13,18 +13,18 @@ namespace LibrarySQL
             _sqlCommandsExecutor = sqlCommandsExecutor ?? throw new ArgumentNullException(nameof(sqlCommandsExecutor));
         }
 
-        public void DeleteData(string databaseName, ISQLArgument[] sqlArguments)
+        public void DeleteData(string databaseName, ISQLArgument[] argumentByWhichDeleting)
         {
             if (databaseName == null)
                 throw new ArgumentNullException(nameof(databaseName));
 
-            if (sqlArguments == null || sqlArguments.Length == 0)
-                throw new ArgumentNullException(nameof(sqlArguments));
+            if (argumentByWhichDeleting == null || argumentByWhichDeleting.Length == 0)
+                throw new ArgumentNullException(nameof(argumentByWhichDeleting));
 
             var finalCommandStringBuilder = new StringBuilder();
             finalCommandStringBuilder.Append($"DELETE FROM {databaseName} WHERE ");
 
-            finalCommandStringBuilder.Append(_sqlParametersStringFactory.Create(sqlArguments.Select(argument => $"{argument.Name} = {argument.Value}").ToArray(), " AND "));
+            finalCommandStringBuilder.Append(_sqlParametersStringFactory.Create(argumentByWhichDeleting.Select(argument => $"{argument.Name} = {argument.Value}").ToArray(), " AND "));
             _sqlCommandsExecutor.ExecuteNonQuery(finalCommandStringBuilder.ToString());
         }
     }

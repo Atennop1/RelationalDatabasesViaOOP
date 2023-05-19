@@ -4,6 +4,6 @@ namespace LibrarySQL
 {
     public interface ISQLDataReader
     {
-        DataTable GetData(string databaseName, string[] columnsNames, SQLArgument[] selectingArguments);
+        DataTable GetData(string databaseName, string[] columnsNames, SQLArgument[] argumentsByWhichSelecting);
     }
 }
