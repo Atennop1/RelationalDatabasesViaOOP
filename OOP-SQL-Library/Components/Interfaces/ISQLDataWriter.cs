@@ -1,6 +1,7 @@
-﻿namespace LibrarySQL;
-
-public interface ISQLDataWriter
+﻿namespace LibrarySQL
 {
-    void WriteData(string databaseName, ISQLArgument[] sqlArguments);
+    public interface ISQLDataWriter
+    {
+        void WriteData(string databaseName, ISQLArgument[] sqlArguments);
+    }
 }

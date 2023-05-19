@@ -1,7 +1,8 @@
-﻿namespace LibrarySQL;
-
-public interface ISQLArgument
+﻿namespace LibrarySQL
 {
-    string Name { get; }
-    object Value { get; }
+    public interface ISQLArgument
+    {
+        string Name { get; }
+        object Value { get; }
+    }
 }

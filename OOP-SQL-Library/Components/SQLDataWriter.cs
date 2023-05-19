@@ -5,11 +5,11 @@ namespace LibrarySQL
     public sealed class SQLDataWriter : ISQLDataWriter
     {
         private readonly ISQLCommandsExecutor _sqlCommandsExecutor;
-        private readonly ISQLParametersStringBuilder _sqlParametersStringBuilder;
+        private readonly ISQLParametersStringFactory _sqlParametersStringFactory;
 
-        public SQLDataWriter(ISQLCommandsExecutor sqlCommandsExecutor, ISQLParametersStringBuilder sqlParametersStringBuilder)
+        public SQLDataWriter(ISQLCommandsExecutor sqlCommandsExecutor, ISQLParametersStringFactory isqlParametersStringFactory)
         {
-            _sqlParametersStringBuilder = sqlParametersStringBuilder ?? throw new ArgumentNullException(nameof(sqlParametersStringBuilder));
+            _sqlParametersStringFactory = isqlParametersStringFactory ?? throw new ArgumentNullException(nameof(isqlParametersStringFactory));
             _sqlCommandsExecutor = sqlCommandsExecutor ?? throw new ArgumentNullException(nameof(sqlCommandsExecutor));
         }
 
@@ -23,11 +23,11 @@ namespace LibrarySQL
             
             var finalCommandStringBuilder = new StringBuilder();
             finalCommandStringBuilder.Append($"INSERT INTO {databaseName} (");
-            finalCommandStringBuilder.Append(_sqlParametersStringBuilder.BuildParameters(sqlArguments.Select(data => data.Name).ToArray(), ", "));
+            finalCommandStringBuilder.Append(_sqlParametersStringFactory.Create(sqlArguments.Select(argument => argument.Name).ToArray(), ", "));
             finalCommandStringBuilder.Append(")");
             
             finalCommandStringBuilder.Append(" VALUES (");
-            finalCommandStringBuilder.Append(_sqlParametersStringBuilder.BuildParameters(sqlArguments.Select(data => data.Value.ToString()).ToArray(), ", "));
+            finalCommandStringBuilder.Append(_sqlParametersStringFactory.Create(sqlArguments.Select(argument => argument.Value.ToString()).ToArray()!, ", "));
             finalCommandStringBuilder.Append(")");
             
             _sqlCommandsExecutor.ExecuteNonQuery(finalCommandStringBuilder.ToString());

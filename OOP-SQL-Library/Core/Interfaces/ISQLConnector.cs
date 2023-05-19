@@ -1,8 +1,9 @@
 ﻿using Npgsql;
 
-namespace LibrarySQL;
-
-public interface ISQLConnector
+namespace LibrarySQL
 {
-    NpgsqlConnection GetConnection();
+    public interface ISQLConnector
+    {
+        NpgsqlConnection GetConnection();
+    }
 }

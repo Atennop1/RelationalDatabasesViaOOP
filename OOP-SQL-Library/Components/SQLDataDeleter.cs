@@ -5,11 +5,11 @@ namespace LibrarySQL
     public sealed class SQLDataDeleter : ISQLDataDeleter
     {
         private readonly ISQLCommandsExecutor _sqlCommandsExecutor;
-        private readonly ISQLParametersStringBuilder _sqlParametersStringBuilder;
+        private readonly ISQLParametersStringFactory _sqlParametersStringFactory;
 
-        public SQLDataDeleter(ISQLCommandsExecutor sqlCommandsExecutor, ISQLParametersStringBuilder sqlParametersStringBuilder)
+        public SQLDataDeleter(ISQLCommandsExecutor sqlCommandsExecutor, ISQLParametersStringFactory isqlParametersStringFactory)
         {
-            _sqlParametersStringBuilder = sqlParametersStringBuilder ?? throw new ArgumentNullException(nameof(sqlParametersStringBuilder));
+            _sqlParametersStringFactory = isqlParametersStringFactory ?? throw new ArgumentNullException(nameof(isqlParametersStringFactory));
             _sqlCommandsExecutor = sqlCommandsExecutor ?? throw new ArgumentNullException(nameof(sqlCommandsExecutor));
         }
 
@@ -24,7 +24,7 @@ namespace LibrarySQL
             var finalCommandStringBuilder = new StringBuilder();
             finalCommandStringBuilder.Append($"DELETE FROM {databaseName} WHERE ");
 
-            finalCommandStringBuilder.Append(_sqlParametersStringBuilder.BuildParameters(sqlArguments.Select(data => $"{data.Name} = {data.Value}").ToArray(), " AND "));
+            finalCommandStringBuilder.Append(_sqlParametersStringFactory.Create(sqlArguments.Select(argument => $"{argument.Name} = {argument.Value}").ToArray(), " AND "));
             _sqlCommandsExecutor.ExecuteNonQuery(finalCommandStringBuilder.ToString());
         }
     }

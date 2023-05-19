@@ -5,12 +5,12 @@ namespace LibrarySQL
     public sealed class SQLDataUpdater : ISQLDataUpdater
     {
         private readonly ISQLCommandsExecutor _sqlCommandsExecutor;
-        private readonly ISQLParametersStringBuilder _sqlParametersStringBuilder;
+        private readonly ISQLParametersStringFactory _sqlParametersStringFactory;
 
-        public SQLDataUpdater(ISQLCommandsExecutor sqlCommandsExecutor, ISQLParametersStringBuilder sqlParametersStringBuilder)
+        public SQLDataUpdater(ISQLCommandsExecutor sqlCommandsExecutor, ISQLParametersStringFactory isqlParametersStringFactory)
         {
             _sqlCommandsExecutor = sqlCommandsExecutor ?? throw new ArgumentNullException(nameof(sqlCommandsExecutor));
-            _sqlParametersStringBuilder = sqlParametersStringBuilder ?? throw new ArgumentNullException(nameof(sqlParametersStringBuilder));
+            _sqlParametersStringFactory = isqlParametersStringFactory ?? throw new ArgumentNullException(nameof(isqlParametersStringFactory));
         }
 
         public void UpdateData(string databaseName, ISQLArgument[] argumentsThatChanging, ISQLArgument[] argumentsForWhichChanging)
@@ -26,12 +26,12 @@ namespace LibrarySQL
             
             var finalCommandStringBuilder = new StringBuilder();
             finalCommandStringBuilder.Append($"UPDATE {databaseName} SET ");
-            finalCommandStringBuilder.Append(_sqlParametersStringBuilder.BuildParameters(argumentsThatChanging.Select(data => $"{data.Name} = {data.Value}").ToArray(), " AND "));
+            finalCommandStringBuilder.Append(_sqlParametersStringFactory.Create(argumentsThatChanging.Select(argument => $"{argument.Name} = {argument.Value}").ToArray(), " AND "));
 
             if (argumentsThatChanging.Length != 0)
             {
                 finalCommandStringBuilder.Append(" WHERE ");
-                finalCommandStringBuilder.Append(_sqlParametersStringBuilder.BuildParameters(argumentsForWhichChanging.Select(data => $"{data.Name} = {data.Value}").ToArray(), " AND "));
+                finalCommandStringBuilder.Append(_sqlParametersStringFactory.Create(argumentsForWhichChanging.Select(argument => $"{argument.Name} = {argument.Value}").ToArray(), " AND "));
             }
             
             _sqlCommandsExecutor.ExecuteNonQuery(finalCommandStringBuilder.ToString());

@@ -1,6 +1,7 @@
-﻿namespace LibrarySQL;
-
-public interface ISQLDataDeleter
+﻿namespace LibrarySQL
 {
-    void DeleteData(string databaseName, ISQLArgument[] sqlArguments);
+    public interface ISQLDataDeleter
+    {
+        void DeleteData(string databaseName, ISQLArgument[] sqlArguments);
+    }
 }

@@ -9,8 +9,12 @@
         {
             if (value == null)
                 throw new ArgumentNullException(nameof(value));
-            
-            if (value is string valueString && (string.IsNullOrEmpty(valueString) || valueString.IndexOfAny("&^\"\'@#$&|".ToCharArray()) != -1))
+
+            var stringValue = value as string;
+            if (stringValue != null && string.IsNullOrEmpty(stringValue))
+                throw new ArgumentException("String is null or empty");
+                    
+            if (stringValue != null && stringValue.IndexOfAny("&^\"\'@#$&|".ToCharArray()) != -1)
                 throw new ArgumentException("Value contains forbidden symbols");
             
             Name = name ?? throw new ArgumentException("Name can't be null");

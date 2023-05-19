@@ -1,6 +1,7 @@
-﻿namespace LibrarySQL;
-
-public interface ISQLDataUpdater
+﻿namespace LibrarySQL
 {
-    void UpdateData(string databaseName, ISQLArgument[] argumentsThatChanging, ISQLArgument[] argumentsForWhichChanging);
+    public interface ISQLDataUpdater
+    {
+        void UpdateData(string databaseName, ISQLArgument[] argumentsThatChanging, ISQLArgument[] argumentsForWhichChanging);
+    }
 }

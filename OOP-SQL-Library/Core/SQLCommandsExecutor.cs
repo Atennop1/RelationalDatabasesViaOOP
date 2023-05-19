@@ -11,36 +11,54 @@ namespace LibrarySQL
 
         public NpgsqlDataReader ExecuteReader(string commandText)
         {
+            if (commandText == null)
+                throw new ArgumentNullException(nameof(commandText));
+            
             var command = new NpgsqlCommand(commandText, _connector.GetConnection());
             return command.ExecuteReader();
         }
 
         public int ExecuteNonQuery(string commandText)
         {
+            if (commandText == null)
+                throw new ArgumentNullException(nameof(commandText));
+            
             var command = new NpgsqlCommand(commandText, _connector.GetConnection());
             return command.ExecuteNonQuery();
         }
 
-        public object ExecuteScalar(string commandText)
+        public object? ExecuteScalar(string commandText)
         {
+            if (commandText == null)
+                throw new ArgumentNullException(nameof(commandText));
+            
             var command = new NpgsqlCommand(commandText, _connector.GetConnection());
             return command.ExecuteScalar();
         }
         
         public Task<NpgsqlDataReader> ExecuteReaderAsync(string commandText)
         {
+            if (commandText == null)
+                throw new ArgumentNullException(nameof(commandText));
+            
             var command = new NpgsqlCommand(commandText, _connector.GetConnection());
             return Task.FromResult(command.ExecuteReader());
         }
         
         public Task<int> ExecuteNonQueryAsync(string commandText)
         {
+            if (commandText == null)
+                throw new ArgumentNullException(nameof(commandText));
+            
             var command = new NpgsqlCommand(commandText, _connector.GetConnection());
             return Task.FromResult(command.ExecuteNonQuery());
         }
 
-        public Task<object> ExecuteScalarAsync(string commandText)
+        public Task<object?> ExecuteScalarAsync(string commandText)
         {
+            if (commandText == null)
+                throw new ArgumentNullException(nameof(commandText));
+            
             var command = new NpgsqlCommand(commandText, _connector.GetConnection());
             return Task.FromResult(command.ExecuteScalar());
         }

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>OOP-SQL-Library</id>
+    <version>1.0.0</version>
+    <title>Simple-ORM</title>
+    <authors>Atennop</authors>
+    <description>Simple ORM which I created when was bored</description>
+    <repository url="https://github.com/Atennop1/OOP-SQL-Library" />
+    <dependencies>
+      <group targetFramework="net6.0">
+        <dependency id="Npgsql" version="8.0.0-preview.3" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Users\User\source\repos\OOP-SQL-Library\OOP-SQL-Library\bin\Debug\net6.0\OOP-SQL-Library.dll" target="lib\net6.0\OOP-SQL-Library.dll" />
+  </files>
+</package>

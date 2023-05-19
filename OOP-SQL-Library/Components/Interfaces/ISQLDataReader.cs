@@ -1,8 +1,9 @@
 ﻿using System.Data;
 
-namespace LibrarySQL;
-
-public interface ISQLDataReader
+namespace LibrarySQL
 {
-    DataTable GetData(string sqlRequest);
+    public interface ISQLDataReader
+    {
+        DataTable GetData(string sqlRequest);
+    }
 }
