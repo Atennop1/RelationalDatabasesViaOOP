@@ -23,4 +23,4 @@ cd DirectoryWIthYourProject
 dotnet add package Simple-ORM
 dotnet restore
 ```
-Or you can visit https://www.nuget.org/packages/OOP-SQL-Library
+Or you can visit [package page on Nuget](https://www.nuget.org/packages/OOP-SQL-Library) and install package from there
