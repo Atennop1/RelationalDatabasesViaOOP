@@ -40,13 +40,51 @@ This is enough for you to execute any SQL queries, but to make everything more c
 var sqlParametersStringFactory = new SQLParametersStringFactory();
 ```
 
+### SQLDataWriter
+
+SQLDataWriter allows you to write data to your database. It only takes 2 arguments: the name of your database and the SQLArguments to be inserted.
+
+```c#
+var sqlDataWriter = new SQLDataWriter(sqlCommandExecutor, sqlParametersStringFactory);
+ISQLArgument[] arguments = { new SQLArgument("age", 19), new SQLArgument("first_name", "Anatoliy"), new SQLArgument("last_name", "Oleynikov") };
+sqlDataWriter.WriteData("humans", arguments); //equals to "INSERT INTO humans (age, first_name, last_name) VALUES (19, 'Anatoliy', 'Oleynikov')"
+```
+
 ### SQLDataReader
 
-SQLDataReader allows you to read data from a table, taking 3 arguments: the name of the table, the names of the columns to be selected (optional, if you pass an empty array, then in the final query will be \*), and the arguments by which the data will be selected (optional)
+SQLDataReader allows you to read data from a table, taking 3 arguments: the name of the table, the names of the columns to be selected (optional, if you pass an empty array, then in the final query will be \*), and the SQLArguments by which the data will be selected (optional).
 
 ```c#
 var sqlDataReader = new SQLDataReader(sqlCommandExecutor, sqlParametersStringFactory);
-var data = sqlDataReader.GetData("humans", new string[] { }, new SQLArgument[] { }); //equals to "SELECT * FROM humans"
+DataTable data = sqlDataReader.GetData("humans", new string[] { }); //equals to "SELECT * FROM humans"
 data = sqlDataReader.GetData("humans", new[] { "first_name" }, new SQLArgument[] { new("age", 19) }); //equals to "SELECT first_name FROM humans WHERE age = 19"
 ```
 
+### SQLDataUpdater 
+
+SQLDataUpdater allows you to update the data in your database. It takes 3 arguments, of which 2 are required: the name of the database and the SQLArguments by which the data will be replaced. The third argument is the SQLArguments that will be updated. If this argument is missing, all data in the table will be replaced, be careful.
+
+```c#
+var sqlDataUpdater = new SQLDataUpdater(sqlCommandExecutor, sqlParametersStringFactory);
+var replacedArguments = new ISQLArgument[] { new SQLArgument("age", 20) };
+var argumentsWhichChanging = new ISQLArgument[] { new SQLArgument("first_name", "Anatoliy") };
+
+sqlDataUpdater.UpdateData("humans", replacedArguments, argumentsWhichChanging); //equals to "UPDATE humans SET age = 20 WHERE first_name = 'Anatoliy'"
+sqlDataUpdater.UpdateData("humans", replacedArguments); //equals to "UPDATE humans SET age = 20"
+```
+
+### SQLDataDeleter
+
+SQLDataDeleter allows you to delete data. It takes 2 arguments: the name of the database and the SQLArguments by which the data will be deleted.
+
+```c#
+var sqlDataDeleter = new SQLDataDeleter(sqlCommandExecutor, sqlParametersStringFactory);
+ISQLArgument[] arguments = { new SQLArgument("age", 19), new SQLArgument("first_name", "Anatoliy"), new SQLArgument("last_name", "Oleynikov") };
+sqlDataDeleter.DeleteData("humans", arguments); //equals to "DELETE FROM humans WHERE age = 19 AND first_name = 'Anatoliy' AND last_name = 'Oleynikov'"
+```
+
+## Conclusion
+
+Now you know how to install and use the components of this library. Don't forget that if the library's CRUD components don't allow you to execute the commands you need or don't allow you to do all the necessary actions in one query, then you can always use SQLCommandsExecutor, which reduces command execution to 1 line and allows you to use the full power of SQL. Thanks for reading and using the library. Good luck with your projects!
+
+From Atennop with ❤ and OOP.
