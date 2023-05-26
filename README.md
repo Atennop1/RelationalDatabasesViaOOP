@@ -6,13 +6,13 @@
 
 ## About project
 
-- This is a simple SQL library that I made as part of my learning new things in Unity and strict OOP Research
-- In fact, this is just a wrapper over another library - [Npgsql](https://www.npgsql.org/)
+- This is a simple SQL library that I made as part of my learning new things in Unity and **strict OOP Research**
+- In fact, this is just a wrapper over another library - [**Npgsql**](https://www.npgsql.org/)
 - The library contains classes for using basic SQL commands(CRUD), but allows you to execute any command in any mode (Reader, NonQuery, Scalar and async versions of them)
 
 ### Specifics
 - Project using **OOP** and **SOLID**
-- Procedural SQL algorithms deisgned to be **True OOP**
+- Procedural SQL algorithms deisgned to be **true OOP**
 - Clearest **DI** and **SRP**
 - My first library that I published
 
@@ -26,6 +26,8 @@ dotnet restore
 Or you can visit [package page on Nuget](https://www.nuget.org/packages/OOP-SQL-Library) and install package from there
 
 ## How to use
+
+**All classes below have their own interfaces!**
 
 To get started, you will need components such as SQLConnector and SQLCommandExecutor. This is the base for all other components, as they allow you to execute SQL queries.
 
