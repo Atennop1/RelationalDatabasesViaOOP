@@ -14,7 +14,7 @@ namespace LibrarySQL
             _sqlParametersStringFactory = sqlParametersStringFactory ?? throw new ArgumentNullException(nameof(sqlParametersStringFactory));
         }
 
-        public DataTable GetData(string databaseName, string[] columnsNames, SQLArgument[] argumentsByWhichSelecting)
+        public DataTable GetData(string databaseName, string[] columnsNames, ISQLArgument[] argumentsByWhichSelecting = null!)
         {
             if (databaseName == null)
                 throw new ArgumentNullException(nameof(databaseName));
@@ -22,15 +22,12 @@ namespace LibrarySQL
             if (columnsNames == null)
                 throw new ArgumentNullException(nameof(columnsNames));
 
-            if (argumentsByWhichSelecting == null)
-                throw new ArgumentNullException(nameof(argumentsByWhichSelecting));
-
             var stringBuilder = new StringBuilder();
             stringBuilder.Append("SELECT ");
             stringBuilder.Append(columnsNames.Length == 0 ? "*" : _sqlParametersStringFactory.Create(columnsNames, ", "));
             stringBuilder.Append($" FROM {databaseName}");
 
-            if (argumentsByWhichSelecting.Length != 0)
+            if (argumentsByWhichSelecting != null && argumentsByWhichSelecting.Length != 0)
             {
                 stringBuilder.Append(" WHERE ");
                 stringBuilder.Append(_sqlParametersStringFactory.Create(argumentsByWhichSelecting.Select(argument => $"{argument.Name} = {argument.Value}").ToArray(), " AND "));

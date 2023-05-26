@@ -2,6 +2,6 @@
 {
     public interface ISQLDataUpdater
     {
-        void UpdateData(string databaseName, ISQLArgument[] argumentsThatChanging, ISQLArgument[] argumentsByWhichChanging);
+        void UpdateData(string databaseName, ISQLArgument[] replacedArguments, ISQLArgument[] argumentsWhichChanging);
     }
 }
