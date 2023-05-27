@@ -26,7 +26,7 @@ namespace LibrarySQL
             _sqlConnection = new NpgsqlConnection(authorizationString);
         }
 
-        public IDataReader ExecuteReaderCommand(string commandText)
+        public IDataReader SendReaderRequest(string commandText)
         {
             if (commandText == null)
                 throw new ArgumentNullException(nameof(commandText));
@@ -35,7 +35,7 @@ namespace LibrarySQL
             return command.ExecuteReader();
         }
 
-        public int ExecuteNonQueryCommand(string commandText)
+        public int SendNonQueryRequest(string commandText)
         {
             if (commandText == null)
                 throw new ArgumentNullException(nameof(commandText));
@@ -44,7 +44,7 @@ namespace LibrarySQL
             return command.ExecuteNonQuery();
         }
 
-        public object? ExecuteScalarCommand(string commandText)
+        public object? SendScalarRequest(string commandText)
         {
             if (commandText == null)
                 throw new ArgumentNullException(nameof(commandText));
@@ -53,7 +53,7 @@ namespace LibrarySQL
             return command.ExecuteScalar();
         }
         
-        public Task<IDataReader> ExecuteReaderCommandAsync(string commandText)
+        public Task<IDataReader> SendReaderRequestAsync(string commandText)
         {
             if (commandText == null)
                 throw new ArgumentNullException(nameof(commandText));
@@ -62,7 +62,7 @@ namespace LibrarySQL
             return Task.FromResult((IDataReader)command.ExecuteReader());
         }
         
-        public Task<int> ExecuteNonQueryCommandAsync(string commandText)
+        public Task<int> SendNonQueryRequestAsync(string commandText)
         {
             if (commandText == null)
                 throw new ArgumentNullException(nameof(commandText));
@@ -71,7 +71,7 @@ namespace LibrarySQL
             return Task.FromResult(command.ExecuteNonQuery());
         }
 
-        public Task<object?> ExecuteScalarCommandAsync(string commandText)
+        public Task<object?> SendScalarRequestAsync(string commandText)
         {
             if (commandText == null)
                 throw new ArgumentNullException(nameof(commandText));

@@ -25,7 +25,7 @@ namespace LibrarySQL
             finalCommandStringBuilder.Append($"DELETE FROM {databaseName} WHERE ");
 
             finalCommandStringBuilder.Append(_databaseParametersStringFactory.Create(valuesByWhichDeleting.Select(argument => $"{argument.Name} = {argument.Get()}").ToArray(), " AND "));
-            _database.ExecuteNonQueryCommand(finalCommandStringBuilder.ToString());
+            _database.SendNonQueryRequest(finalCommandStringBuilder.ToString());
         }
     }
 }

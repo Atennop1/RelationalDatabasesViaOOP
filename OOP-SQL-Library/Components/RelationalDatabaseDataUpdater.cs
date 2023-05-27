@@ -31,7 +31,7 @@ namespace LibrarySQL
                 finalCommandStringBuilder.Append(_databaseParametersStringFactory.Create(valuesWhichChanging.Select(argument => $"{argument.Name} = {argument.Get()}").ToArray(), " AND "));
             }
             
-            _database.ExecuteNonQueryCommand(finalCommandStringBuilder.ToString());
+            _database.SendNonQueryRequest(finalCommandStringBuilder.ToString());
         }
     }
 }

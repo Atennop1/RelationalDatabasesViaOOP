@@ -4,12 +4,12 @@ namespace LibrarySQL
 {
     public interface IDatabase
     {
-        IDataReader ExecuteReaderCommand(string commandText);
-        int ExecuteNonQueryCommand(string commandText);
-        object? ExecuteScalarCommand(string commandText);
+        IDataReader SendReaderRequest(string commandText);
+        int SendNonQueryRequest(string commandText);
+        object? SendScalarRequest(string commandText);
     
-        Task<IDataReader> ExecuteReaderCommandAsync(string commandText);
-        Task<int> ExecuteNonQueryCommandAsync(string commandText);
-        Task<object?> ExecuteScalarCommandAsync(string commandText);
+        Task<IDataReader> SendReaderRequestAsync(string commandText);
+        Task<int> SendNonQueryRequestAsync(string commandText);
+        Task<object?> SendScalarRequestAsync(string commandText);
     }
 }

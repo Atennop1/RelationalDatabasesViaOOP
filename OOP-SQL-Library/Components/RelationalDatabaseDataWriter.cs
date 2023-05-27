@@ -30,7 +30,7 @@ namespace LibrarySQL
             finalCommandStringBuilder.Append(_databaseParametersStringFactory.Create(valuesWhichWriting.Select(argument => argument.Get().ToString()).ToArray()!, ", "));
             finalCommandStringBuilder.Append(")");
             
-            _database.ExecuteNonQueryCommand(finalCommandStringBuilder.ToString());
+            _database.SendNonQueryRequest(finalCommandStringBuilder.ToString());
         }
     }
 }

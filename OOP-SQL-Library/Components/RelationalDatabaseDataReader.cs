@@ -33,7 +33,7 @@ namespace LibrarySQL
                 stringBuilder.Append(_databaseParametersStringFactory.Create(valuesByWhichSelecting.Select(argument => $"{argument.Name} = {argument.Get()}").ToArray(), " AND "));
             }
             
-            var dataReader = _database.ExecuteReaderCommand(stringBuilder.ToString());
+            var dataReader = _database.SendReaderRequest(stringBuilder.ToString());
             var dataTable = new DataTable();
             
             dataTable.Load(dataReader);
