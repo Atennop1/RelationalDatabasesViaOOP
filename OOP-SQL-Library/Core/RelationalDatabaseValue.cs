@@ -1,11 +1,11 @@
 ﻿namespace LibrarySQL
 {
-    public struct SQLArgument : ISQLArgument
+    public readonly struct RelationalDatabaseValue : IDatabaseValue
     {
         public string Name { get; }
-        public object Value { get; }
+        private readonly object _value;
 
-        public SQLArgument(string name, object value)
+        public RelationalDatabaseValue(string name, object value)
         {
             if (value == null)
                 throw new ArgumentNullException(nameof(value));
@@ -18,7 +18,10 @@
                 throw new ArgumentException("Value contains forbidden symbols");
             
             Name = name ?? throw new ArgumentException("Name can't be null");
-            Value = value is string ? $"'{value}'" : value;
+            _value = value is string ? $"'{value}'" : value;
         }
+
+        public object Get()
+            => _value;
     }
 }

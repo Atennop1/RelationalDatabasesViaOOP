@@ -2,7 +2,7 @@
 
 namespace LibrarySQL
 {
-    public sealed class SQLParametersStringFactory : ISQLParametersStringFactory
+    public sealed class DatabaseParametersStringFactory : IDatabaseParametersStringFactory
     {
         public string Create(string[] names, string delimiter)
         {
