@@ -10,12 +10,8 @@
             if (value == null)
                 throw new ArgumentNullException(nameof(value));
 
-            var stringValue = value as string;
-            if (stringValue != null && string.IsNullOrEmpty(stringValue))
-                throw new ArgumentException("String is null or empty");
-                    
-            if (stringValue != null && stringValue.IndexOfAny("&^\"\'@#$&|".ToCharArray()) != -1)
-                throw new ArgumentException("Value contains forbidden symbols");
+            if (value as string is { } stringValue && stringValue.IndexOfAny("\"\'".ToCharArray()) != -1)
+                value = stringValue.Replace("\'", "\\\'");
             
             Name = name ?? throw new ArgumentException("Name can't be null");
             _value = value is string ? $"'{value}'" : value;
