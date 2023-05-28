@@ -6,7 +6,7 @@
 
 ## About project
 
-- This is a simple library for working with relational databases that I made as part of my learning new things in Unity and **strict OOP Research**
+- This is a simple library for work with relational databases that I made as part of my learning new things in Unity and **strict OOP Research**
 - In fact, this is just a wrapper over another library - [**Npgsql**](https://www.npgsql.org/)
 - The library contains classes for using basic SQL commands(CRUD), but allows you to execute any command in any mode
 
@@ -20,10 +20,10 @@
 
 ```cmd
 cd DirectoryWithYourProject
-dotnet add package Simple-ORM
+dotnet add package RelationalDatabasesViaOOP
 dotnet restore
 ```
-Or you can visit [package page on Nuget](https://www.nuget.org/packages/OOP-SQL-Library) and install package from there
+Or you can visit [package page on Nuget](https://www.nuget.org/packages/RelationalDatabasesViaOOP) and install package from there
 
 ## How to use
 
