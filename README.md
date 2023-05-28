@@ -1,22 +1,22 @@
-﻿# Relational-Databases-via-OOP
+﻿# **Relational-Databases-via-OOP**
 
 ![badge](https://img.shields.io/static/v1?label=Language&message=C%23&color=blueviolet&style=for-the-badge)
 ![badge](https://img.shields.io/static/v1?label=architecture&message=Pure-Model&color=red&style=for-the-badge)
 ![badge](https://img.shields.io/static/v1?label=Paradigm&message=OOP&color=green&style=for-the-badge)
 
-## About project
+## **About project**
 
 - This is a simple library for work with relational databases that I made as part of my learning new things in Unity and **strict OOP Research**
 - In fact, this is just a wrapper over another library - [**Npgsql**](https://www.npgsql.org/)
 - The library contains classes for using basic SQL commands(CRUD), but allows you to execute any command in any mode
 
-### Specifics
+### **Specifics**
 - Project using **OOP** and **SOLID**
 - Procedural algorithms of SQL request building designed to be **true OOP**
 - Clearest **DI** and **SRP**
 - My first library that I published
 
-## How to install
+## **How to install**
 
 ```cmd
 cd DirectoryWithYourProject
@@ -25,12 +25,12 @@ dotnet restore
 ```
 Or you can visit [package page on Nuget](https://www.nuget.org/packages/RelationalDatabasesViaOOP) and install package from there
 
-## How to use
+## **How to use**
 
 A little warning for those who don't know:<br>
 Relational databases are databases **based on the relational data model** and SQL is a **relational database query language**. In the code of this library, you will not find a single mention of SQL, because all components **provide work with relational databases**, executing and building SQL queries in their implementation.
 
-### RelationalDatabase
+### **RelationalDatabase**
 
 To get started, you will need to create the RelationalDatabase and DatabaseParametersStringFactory components. The first one allows you to query a relational database in any mode (NonQuery, Scalar, Reader and async versions of them) and has an IDatabase interface, while the second one is used by other components for convenience and has an IDatabaseParametersStringFactory interface. You won't need it to run queries directly.
 
@@ -39,7 +39,7 @@ var database = new RelationalDatabase(@"Server=your server;Port=your port;User I
 var parametersStringFactory = new DatabaseParametersStringFactory();
 ```
 
-### RelationalDatabaseValue
+### **RelationalDatabaseValue**
 
 Also, for all components, you will need objects of the RelationalDatabaseValue class, which has the IDatabaseValue interface and is a name-value pair with validation, isolation and other cool things ;)
 
@@ -47,7 +47,7 @@ Also, for all components, you will need objects of the RelationalDatabaseValue c
 var value = new RelationalDatabaseValue("first_name", "Anatoliy");
 ```
 
-### RelationalDatabaseDataWriter
+### **RelationalDatabaseDataWriter**
 
 RelationalDatabaseDataWriter allows you to write data to your relational database and has the IDatabaseDataWriter interface. It only takes 2 arguments: the name of your database and the IDatabaseValues to be inserted.
 
@@ -57,7 +57,7 @@ IDatabaseValue[] values = { new RelationalDatabaseValue("age", 19), new Relation
 relationalDatabaseDataWriter.WriteData("humans", values); //equals to "INSERT INTO humans (age, first_name, last_name) VALUES (19, 'Anatoliy', 'Oleynikov')"
 ```
 
-### RelationalDatabaseDataReader
+### **RelationalDatabaseDataReader**
 
 RelationalDatabaseDataReader allows you to read data from your relational database and has the IDatabaseDataReader interface. It takes 3 arguments: the name of the table, the names of the columns to be selected (optional, if you pass an empty array, then in the final query will be \*), and the IDatabaseValues by which the data will be selected (optional).
 
@@ -67,7 +67,7 @@ DataTable dataTable = relationalDatabaseDataReader.GetData("humans", new string[
 dataTable = relationalDatabaseDataReader.GetData("humans", new[] { "first_name" }, new IDatabaseValue[] { new RelationalDatabaseValue("age", 19) }); //equals to "SELECT first_name FROM humans WHERE age = 19"
 ```
 
-### RelationalDatabaseDataUpdater 
+### **RelationalDatabaseDataUpdater** 
 
 RelationalDatabaseDataUpdater allows you to update data in your relational database and has the IDatabaseDataUpdater interface. It takes 3 arguments, of which 2 are required: the name of the database and the IDatabaseValues by which the data will be replaced. The third argument is the IDatabaseValues that will be updated. If this argument is missing, all data in the table will be replaced, be careful.
 
@@ -80,7 +80,7 @@ relationalDatabaseDataUpdater.UpdateData("humans", replacedArguments, argumentsW
 relationalDatabaseDataUpdater.UpdateData("humans", replacedArguments); //equals to "UPDATE humans SET age = 20"
 ```
 
-### RelationalDatabaseDataDeleter
+### **RelationalDatabaseDataDeleter**
 
 RelationalDatabaseDataDeleter allows you to delete data from your relational database and has the IDatabaseDataDeleter interface. It takes 2 arguments: the name of the database and the IDatabaseValues by which the data will be deleted.
 
@@ -90,7 +90,7 @@ IDatabaseValue[] values = { new RelationalDatabaseValue("age", 19), new Relation
 relationalDatabaseDataDeleter.DeleteData("humans", values); //equals to "DELETE FROM humans WHERE age = 19 AND first_name = 'Anatoliy' AND last_name = 'Oleynikov'"
 ```
 
-## Conclusion
+## **Conclusion**
 
 Now you know how to install and use the components of this library. Don't forget that if the library's CRUD components don't allow you to execute the commands you need or don't allow you to do all the necessary actions in one query, then you can always use RelationalDatabase, which reduces command execution to one line and allows you to use the full power of SQL. Thanks for reading this and using the library. Good luck with your projects!
 
