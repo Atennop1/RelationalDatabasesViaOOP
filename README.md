@@ -6,13 +6,13 @@
 
 ## About project
 
-- This is a simple SQL library that I made as part of my learning new things in Unity and **strict OOP Research**
+- This is a simple library for working with relational databases that I made as part of my learning new things in Unity and **strict OOP Research**
 - In fact, this is just a wrapper over another library - [**Npgsql**](https://www.npgsql.org/)
 - The library contains classes for using basic SQL commands(CRUD), but allows you to execute any command in any mode
 
 ### Specifics
 - Project using **OOP** and **SOLID**
-- Procedural SQL algorithms deisgned to be **true OOP**
+- Procedural algorithms of SQL request building designed to be **true OOP**
 - Clearest **DI** and **SRP**
 - My first library that I published
 
@@ -26,6 +26,9 @@ dotnet restore
 Or you can visit [package page on Nuget](https://www.nuget.org/packages/OOP-SQL-Library) and install package from there
 
 ## How to use
+
+A little warning for those who don't know:<br>
+Relational databases are databases **based on the relational data model** and SQL is a **relational database query language**. In the code of this library, you will not find a single mention of SQL, because all components **provide work with relational databases**, executing and building SQL queries in their implementation.
 
 ### RelationalDatabase
 
