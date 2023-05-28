@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 
 namespace RelationalDatabasesViaOOP
 {
@@ -19,7 +20,7 @@ namespace RelationalDatabasesViaOOP
             foreach (var name in names)
             {
                 stringBuilder.Append(name);
-                stringBuilder.Append(name != names[^1] ? delimiter : string.Empty);
+                stringBuilder.Append(name != names[names.Length - 1] ? delimiter : string.Empty);
             }
 
             return stringBuilder.ToString();

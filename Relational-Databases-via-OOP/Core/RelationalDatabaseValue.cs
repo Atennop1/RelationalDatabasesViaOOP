@@ -1,4 +1,6 @@
-﻿namespace RelationalDatabasesViaOOP
+﻿using System;
+
+namespace RelationalDatabasesViaOOP
 {
     public readonly struct RelationalDatabaseValue : IDatabaseValue
     {

@@ -1,4 +1,7 @@
-﻿using System.Data;
+﻿#nullable enable
+using System;
+using System.Data;
+using System.Threading.Tasks;
 using Npgsql;
 
 namespace RelationalDatabasesViaOOP
