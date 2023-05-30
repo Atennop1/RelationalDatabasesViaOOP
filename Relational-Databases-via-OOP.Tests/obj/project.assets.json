@@ -973,6 +973,15 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XDocument.dll": {}
         }
+      },
+      "Relational-Databases-via-OOP/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/Relational-Databases-via-OOP.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Relational-Databases-via-OOP.dll": {}
+        }
       }
     }
   },
@@ -3956,6 +3965,11 @@
         "system.xml.xdocument.4.0.11.nupkg.sha512",
         "system.xml.xdocument.nuspec"
       ]
+    },
+    "Relational-Databases-via-OOP/1.0.0": {
+      "type": "project",
+      "path": "../Relational-Databases-via-OOP/Relational-Databases-via-OOP.csproj",
+      "msbuildProject": "../Relational-Databases-via-OOP/Relational-Databases-via-OOP.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -3964,6 +3978,7 @@
       "NUnit >= 3.13.3",
       "NUnit.Analyzers >= 3.3.0",
       "NUnit3TestAdapter >= 4.2.1",
+      "Relational-Databases-via-OOP >= 1.0.0",
       "coverlet.collector >= 3.1.2"
     ]
   },
@@ -3998,7 +4013,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\User\\source\\repos\\Relational-Databases-via-OOP\\Relational-Databases-via-OOP\\Relational-Databases-via-OOP.csproj": {
+              "projectPath": "C:\\Users\\User\\source\\repos\\Relational-Databases-via-OOP\\Relational-Databases-via-OOP\\Relational-Databases-via-OOP.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

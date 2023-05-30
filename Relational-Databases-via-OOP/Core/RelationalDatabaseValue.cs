@@ -2,7 +2,7 @@
 
 namespace RelationalDatabasesViaOOP
 {
-    public readonly struct RelationalDatabaseValue : IDatabaseValue
+    public class RelationalDatabaseValue : IDatabaseValue
     {
         public string Name { get; }
         private readonly object _value;
@@ -12,11 +12,17 @@ namespace RelationalDatabasesViaOOP
             if (value == null)
                 throw new ArgumentNullException(nameof(value));
 
+            if (name == null)
+                throw new ArgumentNullException(nameof(name));
+
             if (value as string is { } stringValue && stringValue.IndexOfAny("\"\'".ToCharArray()) != -1)
-                value = stringValue.Replace("\'", "\\\'");
+                value = stringValue.Replace("'", "''");
             
-            Name = name ?? throw new ArgumentException("Name can't be null");
+            if (name.IndexOfAny("\"\'".ToCharArray()) != -1)
+                name = name.Replace("'", "''");
+            
             _value = value is string ? $"'{value}'" : value;
+            Name = name;
         }
 
         public object Get()

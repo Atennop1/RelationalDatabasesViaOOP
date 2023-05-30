@@ -31,7 +31,11 @@
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\User\\source\\repos\\Relational-Databases-via-OOP\\Relational-Databases-via-OOP\\Relational-Databases-via-OOP.csproj": {
+                "projectPath": "C:\\Users\\User\\source\\repos\\Relational-Databases-via-OOP\\Relational-Databases-via-OOP\\Relational-Databases-via-OOP.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -83,6 +87,21 @@
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
         }
+      }
+    },
+    "C:\\Users\\User\\source\\repos\\Relational-Databases-via-OOP\\Relational-Databases-via-OOP\\Relational-Databases-via-OOP.csproj": {
+      "restore": {
+        "projectUniqueName": "C:\\Users\\User\\source\\repos\\Relational-Databases-via-OOP\\Relational-Databases-via-OOP\\Relational-Databases-via-OOP.csproj",
+        "projectName": "Relational-Databases-via-OOP",
+        "projectPath": "C:\\Users\\User\\source\\repos\\Relational-Databases-via-OOP\\Relational-Databases-via-OOP\\Relational-Databases-via-OOP.csproj",
+        "frameworks": {
+          "net472": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {}
       }
     }
   }

@@ -1,6 +1,3 @@
-C:\Users\User\source\repos\Relational-Databases-via-OOP\Relational-Databases-via-OOP\bin\Debug\Relational_Databases_via_OOP.dll.config
-C:\Users\User\source\repos\Relational-Databases-via-OOP\Relational-Databases-via-OOP\bin\Debug\Relational_Databases_via_OOP.dll
-C:\Users\User\source\repos\Relational-Databases-via-OOP\Relational-Databases-via-OOP\bin\Debug\Relational_Databases_via_OOP.pdb
 C:\Users\User\source\repos\Relational-Databases-via-OOP\Relational-Databases-via-OOP\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\User\source\repos\Relational-Databases-via-OOP\Relational-Databases-via-OOP\bin\Debug\Microsoft.Bcl.HashCode.dll
 C:\Users\User\source\repos\Relational-Databases-via-OOP\Relational-Databases-via-OOP\bin\Debug\Microsoft.Extensions.Logging.Abstractions.dll
@@ -34,5 +31,8 @@ C:\Users\User\source\repos\Relational-Databases-via-OOP\Relational-Databases-via
 C:\Users\User\source\repos\Relational-Databases-via-OOP\Relational-Databases-via-OOP\obj\Debug\Relational-Databases-via-OOP.csproj.AssemblyReference.cache
 C:\Users\User\source\repos\Relational-Databases-via-OOP\Relational-Databases-via-OOP\obj\Debug\Relational-Databases-via-OOP.csproj.CoreCompileInputs.cache
 C:\Users\User\source\repos\Relational-Databases-via-OOP\Relational-Databases-via-OOP\obj\Debug\Relational-Databases-via-OOP.csproj.CopyComplete
-C:\Users\User\source\repos\Relational-Databases-via-OOP\Relational-Databases-via-OOP\obj\Debug\Relational_Databases_via_OOP.dll
-C:\Users\User\source\repos\Relational-Databases-via-OOP\Relational-Databases-via-OOP\obj\Debug\Relational_Databases_via_OOP.pdb
+C:\Users\User\source\repos\Relational-Databases-via-OOP\Relational-Databases-via-OOP\bin\Debug\RelationalDatabasesViaOOP.dll.config
+C:\Users\User\source\repos\Relational-Databases-via-OOP\Relational-Databases-via-OOP\bin\Debug\RelationalDatabasesViaOOP.dll
+C:\Users\User\source\repos\Relational-Databases-via-OOP\Relational-Databases-via-OOP\bin\Debug\RelationalDatabasesViaOOP.pdb
+C:\Users\User\source\repos\Relational-Databases-via-OOP\Relational-Databases-via-OOP\obj\Debug\RelationalDatabasesViaOOP.dll
+C:\Users\User\source\repos\Relational-Databases-via-OOP\Relational-Databases-via-OOP\obj\Debug\RelationalDatabasesViaOOP.pdb
