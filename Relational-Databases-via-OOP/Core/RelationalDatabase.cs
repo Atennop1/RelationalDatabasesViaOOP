@@ -34,6 +34,9 @@ namespace RelationalDatabasesViaOOP
             if (commandText == null)
                 throw new ArgumentNullException(nameof(commandText));
             
+            if (commandText.IndexOf("'", StringComparison.Ordinal) != -1)
+                commandText = commandText.Replace("'", "''");
+            
             var command = new NpgsqlCommand(commandText, SQLConnection);
             return command.ExecuteReader();
         }
@@ -42,6 +45,9 @@ namespace RelationalDatabasesViaOOP
         {
             if (commandText == null)
                 throw new ArgumentNullException(nameof(commandText));
+            
+            if (commandText.IndexOf("'", StringComparison.Ordinal) != -1)
+                commandText = commandText.Replace("'", "''");
             
             var command = new NpgsqlCommand(commandText, SQLConnection);
             return command.ExecuteNonQuery();
@@ -52,6 +58,9 @@ namespace RelationalDatabasesViaOOP
             if (commandText == null)
                 throw new ArgumentNullException(nameof(commandText));
             
+            if (commandText.IndexOf("'", StringComparison.Ordinal) != -1)
+                commandText = commandText.Replace("'", "''");
+            
             var command = new NpgsqlCommand(commandText, SQLConnection);
             return command.ExecuteScalar();
         }
@@ -60,6 +69,9 @@ namespace RelationalDatabasesViaOOP
         {
             if (commandText == null)
                 throw new ArgumentNullException(nameof(commandText));
+            
+            if (commandText.IndexOf("'", StringComparison.Ordinal) != -1)
+                commandText = commandText.Replace("'", "''");
             
             var command = new NpgsqlCommand(commandText, SQLConnection);
             return Task.FromResult((IDataReader)command.ExecuteReader());
@@ -70,6 +82,9 @@ namespace RelationalDatabasesViaOOP
             if (commandText == null)
                 throw new ArgumentNullException(nameof(commandText));
             
+            if (commandText.IndexOf("'", StringComparison.Ordinal) != -1)
+                commandText = commandText.Replace("'", "''");
+            
             var command = new NpgsqlCommand(commandText, SQLConnection);
             return Task.FromResult(command.ExecuteNonQuery());
         }
@@ -78,6 +93,9 @@ namespace RelationalDatabasesViaOOP
         {
             if (commandText == null)
                 throw new ArgumentNullException(nameof(commandText));
+            
+            if (commandText.IndexOf("'", StringComparison.Ordinal) != -1)
+                commandText = commandText.Replace("'", "''");
             
             var command = new NpgsqlCommand(commandText, SQLConnection);
             return Task.FromResult(command.ExecuteScalar());
