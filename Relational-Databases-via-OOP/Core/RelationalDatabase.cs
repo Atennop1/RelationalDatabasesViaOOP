@@ -31,74 +31,55 @@ namespace RelationalDatabasesViaOOP
 
         public IDataReader SendReaderRequest(string commandText)
         {
-            if (commandText == null)
-                throw new ArgumentNullException(nameof(commandText));
-            
-            if (commandText.IndexOf("'", StringComparison.Ordinal) != -1)
-                commandText = commandText.Replace("'", "''");
-            
+            commandText = AddEscapingCharactersToString(commandText);
             var command = new NpgsqlCommand(commandText, SQLConnection);
             return command.ExecuteReader();
         }
 
         public int SendNonQueryRequest(string commandText)
         {
-            if (commandText == null)
-                throw new ArgumentNullException(nameof(commandText));
-            
-            if (commandText.IndexOf("'", StringComparison.Ordinal) != -1)
-                commandText = commandText.Replace("'", "''");
-            
+            commandText = AddEscapingCharactersToString(commandText);
             var command = new NpgsqlCommand(commandText, SQLConnection);
             return command.ExecuteNonQuery();
         }
 
         public object? SendScalarRequest(string commandText)
         {
-            if (commandText == null)
-                throw new ArgumentNullException(nameof(commandText));
-            
-            if (commandText.IndexOf("'", StringComparison.Ordinal) != -1)
-                commandText = commandText.Replace("'", "''");
-            
+            commandText = AddEscapingCharactersToString(commandText);
             var command = new NpgsqlCommand(commandText, SQLConnection);
             return command.ExecuteScalar();
         }
         
         public Task<IDataReader> SendReaderRequestAsync(string commandText)
         {
-            if (commandText == null)
-                throw new ArgumentNullException(nameof(commandText));
-            
-            if (commandText.IndexOf("'", StringComparison.Ordinal) != -1)
-                commandText = commandText.Replace("'", "''");
-            
+            commandText = AddEscapingCharactersToString(commandText);
             var command = new NpgsqlCommand(commandText, SQLConnection);
             return Task.FromResult((IDataReader)command.ExecuteReader());
         }
         
         public Task<int> SendNonQueryRequestAsync(string commandText)
         {
-            if (commandText == null)
-                throw new ArgumentNullException(nameof(commandText));
-            
-            if (commandText.IndexOf("'", StringComparison.Ordinal) != -1)
-                commandText = commandText.Replace("'", "''");
-            
+            commandText = AddEscapingCharactersToString(commandText);
             var command = new NpgsqlCommand(commandText, SQLConnection);
             return Task.FromResult(command.ExecuteNonQuery());
         }
 
         public Task<object?> SendScalarRequestAsync(string commandText)
         {
+            commandText = AddEscapingCharactersToString(commandText);
+            var command = new NpgsqlCommand(commandText, SQLConnection);
+            return Task.FromResult(command.ExecuteScalar());
+        }
+
+        private string AddEscapingCharactersToString(string commandText)
+        {
             if (commandText == null)
                 throw new ArgumentNullException(nameof(commandText));
             
             if (commandText.IndexOf("'", StringComparison.Ordinal) != -1)
                 commandText = commandText.Replace("'", "''");
-            
-            var command = new NpgsqlCommand(commandText, SQLConnection);
-            return Task.FromResult(command.ExecuteScalar());
+
+            return commandText;
         }
     }
 }

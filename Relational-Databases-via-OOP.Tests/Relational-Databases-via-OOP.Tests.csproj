@@ -21,4 +21,8 @@
       <ProjectReference Include="..\Relational-Databases-via-OOP\Relational-Databases-via-OOP.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Core\RelationalDatabaseTests" />
+    </ItemGroup>
+
 </Project>
