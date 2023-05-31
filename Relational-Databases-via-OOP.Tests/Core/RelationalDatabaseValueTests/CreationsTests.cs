@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace RelationalDatabasesViaOOP.Tests
+namespace RelationalDatabasesViaOOP.Tests.RelationalDatabaseValueTests
 {
     public sealed class CreationsTests
     {

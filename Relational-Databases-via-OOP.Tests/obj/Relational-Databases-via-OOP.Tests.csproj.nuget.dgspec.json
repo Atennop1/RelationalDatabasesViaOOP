@@ -64,6 +64,22 @@
               "target": "Package",
               "version": "[4.2.1, )"
             },
+            "Npgsql": {
+              "target": "Package",
+              "version": "[8.0.0-preview.4, )"
+            },
+            "System.Collections.Immutable": {
+              "target": "Package",
+              "version": "[8.0.0-preview.4.23259.5, )"
+            },
+            "System.Text.Json": {
+              "target": "Package",
+              "version": "[8.0.0-preview.4.23259.5, )"
+            },
+            "System.Threading.Channels": {
+              "target": "Package",
+              "version": "[8.0.0-preview.4.23259.5, )"
+            },
             "coverlet.collector": {
               "target": "Package",
               "version": "[3.1.2, )"

@@ -89,15 +89,9 @@ C:\Users\User\source\repos\Relational-Databases-via-OOP\Relational-Databases-via
 C:\Users\User\source\repos\Relational-Databases-via-OOP\Relational-Databases-via-OOP.Tests\bin\Debug\net6.0\zh-Hant\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
 C:\Users\User\source\repos\Relational-Databases-via-OOP\Relational-Databases-via-OOP.Tests\bin\Debug\net6.0\RelationalDatabasesViaOOP.dll
 C:\Users\User\source\repos\Relational-Databases-via-OOP\Relational-Databases-via-OOP.Tests\bin\Debug\net6.0\Npgsql.dll
-C:\Users\User\source\repos\Relational-Databases-via-OOP\Relational-Databases-via-OOP.Tests\bin\Debug\net6.0\Microsoft.Bcl.HashCode.dll
-C:\Users\User\source\repos\Relational-Databases-via-OOP\Relational-Databases-via-OOP.Tests\bin\Debug\net6.0\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\User\source\repos\Relational-Databases-via-OOP\Relational-Databases-via-OOP.Tests\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
 C:\Users\User\source\repos\Relational-Databases-via-OOP\Relational-Databases-via-OOP.Tests\bin\Debug\net6.0\RelationalDatabasesViaOOP.pdb
 C:\Users\User\source\repos\Relational-Databases-via-OOP\Relational-Databases-via-OOP.Tests\bin\Debug\net6.0\RelationalDatabasesViaOOP.dll.config
-C:\Users\User\source\repos\Relational-Databases-via-OOP\Relational-Databases-via-OOP.Tests\bin\Debug\net6.0\Npgsql.xml
-C:\Users\User\source\repos\Relational-Databases-via-OOP\Relational-Databases-via-OOP.Tests\bin\Debug\net6.0\Microsoft.Bcl.HashCode.xml
-C:\Users\User\source\repos\Relational-Databases-via-OOP\Relational-Databases-via-OOP.Tests\bin\Debug\net6.0\Microsoft.Bcl.AsyncInterfaces.xml
-C:\Users\User\source\repos\Relational-Databases-via-OOP\Relational-Databases-via-OOP.Tests\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.xml
 C:\Users\User\source\repos\Relational-Databases-via-OOP\Relational-Databases-via-OOP.Tests\obj\Debug\net6.0\Relational-Databases-via-OOP.Tests.csproj.AssemblyReference.cache
 C:\Users\User\source\repos\Relational-Databases-via-OOP\Relational-Databases-via-OOP.Tests\obj\Debug\net6.0\Relational-Databases-via-OOP.Tests.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\User\source\repos\Relational-Databases-via-OOP\Relational-Databases-via-OOP.Tests\obj\Debug\net6.0\Relational-Databases-via-OOP.Tests.AssemblyInfoInputs.cache
@@ -109,3 +103,8 @@ C:\Users\User\source\repos\Relational-Databases-via-OOP\Relational-Databases-via
 C:\Users\User\source\repos\Relational-Databases-via-OOP\Relational-Databases-via-OOP.Tests\obj\Debug\net6.0\Relational-Databases-via-OOP.Tests.pdb
 C:\Users\User\source\repos\Relational-Databases-via-OOP\Relational-Databases-via-OOP.Tests\obj\Debug\net6.0\Relational-Databases-via-OOP.Tests.genruntimeconfig.cache
 C:\Users\User\source\repos\Relational-Databases-via-OOP\Relational-Databases-via-OOP.Tests\obj\Debug\net6.0\ref\Relational-Databases-via-OOP.Tests.dll
+C:\Users\User\source\repos\Relational-Databases-via-OOP\Relational-Databases-via-OOP.Tests\bin\Debug\net6.0\System.Collections.Immutable.dll
+C:\Users\User\source\repos\Relational-Databases-via-OOP\Relational-Databases-via-OOP.Tests\bin\Debug\net6.0\System.Text.Encodings.Web.dll
+C:\Users\User\source\repos\Relational-Databases-via-OOP\Relational-Databases-via-OOP.Tests\bin\Debug\net6.0\System.Text.Json.dll
+C:\Users\User\source\repos\Relational-Databases-via-OOP\Relational-Databases-via-OOP.Tests\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
+C:\Users\User\source\repos\Relational-Databases-via-OOP\Relational-Databases-via-OOP.Tests\bin\Debug\net6.0\System.Threading.Channels.dll
