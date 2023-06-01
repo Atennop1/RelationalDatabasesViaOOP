@@ -7,11 +7,11 @@ namespace RelationalDatabasesViaOOP
     public sealed class RelationalDatabaseDataWriter : IDatabaseDataWriter
     {
         private readonly IDatabase _database;
-        private readonly IDatabaseParametersStringFactory _databaseParametersStringFactory;
+        private readonly IEnumerationStringFactory _enumerationStringFactory;
 
-        public RelationalDatabaseDataWriter(IDatabase database, IDatabaseParametersStringFactory isqlParametersStringFactory)
+        public RelationalDatabaseDataWriter(IDatabase database, IEnumerationStringFactory enumerationStringFactory)
         {
-            _databaseParametersStringFactory = isqlParametersStringFactory ?? throw new ArgumentNullException(nameof(isqlParametersStringFactory));
+            _enumerationStringFactory = enumerationStringFactory ?? throw new ArgumentNullException(nameof(enumerationStringFactory));
             _database = database ?? throw new ArgumentNullException(nameof(database));
         }
 
@@ -23,16 +23,22 @@ namespace RelationalDatabasesViaOOP
             if (valuesWhichWriting == null || valuesWhichWriting.Length == 0)
                 throw new ArgumentNullException(nameof(valuesWhichWriting));
             
-            var finalCommandStringBuilder = new StringBuilder();
-            finalCommandStringBuilder.Append($"INSERT INTO {databaseName} (");
-            finalCommandStringBuilder.Append(_databaseParametersStringFactory.Create(valuesWhichWriting.Select(argument => argument.Name).ToArray(), ", "));
-            finalCommandStringBuilder.Append(")");
+            _database.SendNonQueryRequest(BuildRequest(databaseName, valuesWhichWriting));
+        }
+
+        private string BuildRequest(string databaseName, IDatabaseValue[] valuesWhichWriting)
+        {
+            var stringBuilder = new StringBuilder();
             
-            finalCommandStringBuilder.Append(" VALUES (");
-            finalCommandStringBuilder.Append(_databaseParametersStringFactory.Create(valuesWhichWriting.Select(argument => argument.Get().ToString()).ToArray()!, ", "));
-            finalCommandStringBuilder.Append(")");
+            stringBuilder.Append($"INSERT INTO {databaseName} (");
+            stringBuilder.Append(_enumerationStringFactory.Create(valuesWhichWriting.Select(argument => argument.Name).ToArray(), ", "));
+            stringBuilder.Append(")");
             
-            _database.SendNonQueryRequest(finalCommandStringBuilder.ToString());
+            stringBuilder.Append(" VALUES (");
+            stringBuilder.Append(_enumerationStringFactory.Create(valuesWhichWriting.Select(argument => argument.Get().ToString()).ToArray()!, ", "));
+            stringBuilder.Append(")");
+
+            return stringBuilder.ToString();
         }
     }
 }

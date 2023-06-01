@@ -3,7 +3,7 @@ using System.Text;
 
 namespace RelationalDatabasesViaOOP
 {
-    public sealed class DatabaseParametersStringFactory : IDatabaseParametersStringFactory
+    public sealed class EnumerationStringFactory : IEnumerationStringFactory
     {
         public string Create(string[] names, string delimiter)
         {

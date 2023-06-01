@@ -1,14 +1,14 @@
 ﻿using NUnit.Framework;
 
-namespace RelationalDatabasesViaOOP.Tests.DatabaseParametersStringFactoryTests
+namespace RelationalDatabasesViaOOP.Tests.EnumerationStringFactory
 {
     public sealed class UsingTests
     {
-        private IDatabaseParametersStringFactory _factory;
+        private IEnumerationStringFactory _factory;
 
         [SetUp]
         public void Setup()
-            => _factory = new DatabaseParametersStringFactory();
+            => _factory = new RelationalDatabasesViaOOP.EnumerationStringFactory();
 
         [Test]
         public void IsCreatingCorrect1()

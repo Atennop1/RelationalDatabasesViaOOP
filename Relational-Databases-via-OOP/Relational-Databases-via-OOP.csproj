@@ -106,9 +106,9 @@
         <Compile Include="Components\RelationalDatabaseDataReader.cs" />
         <Compile Include="Components\RelationalDatabaseDataUpdater.cs" />
         <Compile Include="Components\RelationalDatabaseDataWriter.cs" />
-        <Compile Include="Core\DatabaseParametersStringFactory.cs" />
+        <Compile Include="Core\EnumerationStringFactory.cs" />
         <Compile Include="Core\Interfaces\IDatabase.cs" />
-        <Compile Include="Core\Interfaces\IDatabaseParametersStringFactory.cs" />
+        <Compile Include="Core\Interfaces\IEnumerationStringFactory.cs" />
         <Compile Include="Core\Interfaces\IDatabaseValue.cs" />
         <Compile Include="Core\RelationalDatabase.cs" />
         <Compile Include="Core\RelationalDatabaseValue.cs" />

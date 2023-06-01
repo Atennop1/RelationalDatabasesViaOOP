@@ -7,11 +7,11 @@ namespace RelationalDatabasesViaOOP
     public sealed class RelationalDatabaseDataDeleter : IDatabaseDataDeleter
     {
         private readonly IDatabase _database;
-        private readonly IDatabaseParametersStringFactory _databaseParametersStringFactory;
+        private readonly IEnumerationStringFactory _enumerationStringFactory;
 
-        public RelationalDatabaseDataDeleter(IDatabase database, IDatabaseParametersStringFactory isqlParametersStringFactory)
+        public RelationalDatabaseDataDeleter(IDatabase database, IEnumerationStringFactory enumerationStringFactory)
         {
-            _databaseParametersStringFactory = isqlParametersStringFactory ?? throw new ArgumentNullException(nameof(isqlParametersStringFactory));
+            _enumerationStringFactory = enumerationStringFactory ?? throw new ArgumentNullException(nameof(enumerationStringFactory));
             _database = database ?? throw new ArgumentNullException(nameof(database));
         }
 
@@ -22,12 +22,17 @@ namespace RelationalDatabasesViaOOP
 
             if (valuesByWhichDeleting == null || valuesByWhichDeleting.Length == 0)
                 throw new ArgumentNullException(nameof(valuesByWhichDeleting));
+            
+            _database.SendNonQueryRequest(BuildRequest(databaseName, valuesByWhichDeleting));
+        }
 
-            var finalCommandStringBuilder = new StringBuilder();
-            finalCommandStringBuilder.Append($"DELETE FROM {databaseName} WHERE ");
+        private string BuildRequest(string databaseName, IDatabaseValue[] valuesByWhichDeleting)
+        {
+            var stringBuilder = new StringBuilder();
+            stringBuilder.Append($"DELETE FROM {databaseName} WHERE ");
 
-            finalCommandStringBuilder.Append(_databaseParametersStringFactory.Create(valuesByWhichDeleting.Select(argument => $"{argument.Name} = {argument.Get()}").ToArray(), " AND "));
-            _database.SendNonQueryRequest(finalCommandStringBuilder.ToString());
+            stringBuilder.Append(_enumerationStringFactory.Create(valuesByWhichDeleting.Select(argument => $"{argument.Name} = {argument.Get()}").ToArray(), " AND "));
+            return stringBuilder.ToString();
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace RelationalDatabasesViaOOP
 {
-    public interface IDatabaseParametersStringFactory
+    public interface IEnumerationStringFactory
     {
         string Create(string[] names, string delimiter);
     }

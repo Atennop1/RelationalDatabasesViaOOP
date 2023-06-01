@@ -7,12 +7,12 @@ namespace RelationalDatabasesViaOOP
     public sealed class RelationalDatabaseDataUpdater : IDatabaseDataUpdater
     {
         private readonly IDatabase _database;
-        private readonly IDatabaseParametersStringFactory _databaseParametersStringFactory;
+        private readonly IEnumerationStringFactory _enumerationStringFactory;
 
-        public RelationalDatabaseDataUpdater(IDatabase database, IDatabaseParametersStringFactory isqlParametersStringFactory)
+        public RelationalDatabaseDataUpdater(IDatabase database, IEnumerationStringFactory enumerationStringFactory)
         {
             _database = database ?? throw new ArgumentNullException(nameof(database));
-            _databaseParametersStringFactory = isqlParametersStringFactory ?? throw new ArgumentNullException(nameof(isqlParametersStringFactory));
+            _enumerationStringFactory = enumerationStringFactory ?? throw new ArgumentNullException(nameof(enumerationStringFactory));
         }
 
         public void UpdateData(string databaseName, IDatabaseValue[] replacedValues, IDatabaseValue[] valuesWhichChanging = null!)
@@ -23,17 +23,21 @@ namespace RelationalDatabasesViaOOP
             if (replacedValues == null || replacedValues.Length == 0)
                 throw new ArgumentNullException(nameof(replacedValues));
 
-            var finalCommandStringBuilder = new StringBuilder();
-            finalCommandStringBuilder.Append($"UPDATE {databaseName} SET ");
-            finalCommandStringBuilder.Append(_databaseParametersStringFactory.Create(replacedValues.Select(argument => $"{argument.Name} = {argument.Get()}").ToArray(), " AND "));
+            _database.SendNonQueryRequest(BuildRequest(databaseName, replacedValues, valuesWhichChanging));
+        }
 
-            if (valuesWhichChanging != null && replacedValues.Length != 0)
-            {
-                finalCommandStringBuilder.Append(" WHERE ");
-                finalCommandStringBuilder.Append(_databaseParametersStringFactory.Create(valuesWhichChanging.Select(argument => $"{argument.Name} = {argument.Get()}").ToArray(), " AND "));
-            }
-            
-            _database.SendNonQueryRequest(finalCommandStringBuilder.ToString());
+        private string BuildRequest(string databaseName, IDatabaseValue[] replacedValues, IDatabaseValue[] valuesWhichChanging)
+        {
+            var stringBuilder = new StringBuilder();
+            stringBuilder.Append($"UPDATE {databaseName} SET ");
+            stringBuilder.Append(_enumerationStringFactory.Create(replacedValues.Select(argument => $"{argument.Name} = {argument.Get()}").ToArray(), " AND "));
+
+            if (valuesWhichChanging == null || replacedValues.Length == 0)
+                return stringBuilder.ToString();
+
+            stringBuilder.Append(" WHERE ");
+            stringBuilder.Append(_enumerationStringFactory.Create(valuesWhichChanging.Select(argument => $"{argument.Name} = {argument.Get()}").ToArray(), " AND "));
+            return stringBuilder.ToString();
         }
     }
 }
