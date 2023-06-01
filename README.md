@@ -32,11 +32,11 @@ Relational databases are databases **based on the relational data model** and SQ
 
 ### **RelationalDatabase**
 
-To get started, you will need to create the RelationalDatabase and DatabaseParametersStringFactory components. The first one allows you to query a relational database in any mode (NonQuery, Scalar, Reader and async versions of them) and has an IDatabase interface, while the second one is used by other components for convenience and has an IDatabaseParametersStringFactory interface. You won't need it to run queries directly.
+To get started, you will need to create the RelationalDatabase and EnumerationStringFactory components. The first one allows you to query a relational database in any mode (NonQuery, Scalar, Reader and async versions of them) and has an IDatabase interface, while the second one is used by other components for convenience and has an IEnumerationStringFactory interface. You won't need it to run queries directly.
 
 ```c#
 var database = new RelationalDatabase(@"Server=your server;Port=your port;User Id=your user id;Password=your password;Database=your DB name");
-var parametersStringFactory = new DatabaseParametersStringFactory();
+var enumerationStringFactory = new EnumerationStringFactory();
 ```
 
 ### **RelationalDatabaseValue**
@@ -52,7 +52,7 @@ var value = new RelationalDatabaseValue("first_name", "Anatoliy");
 RelationalDatabaseDataWriter allows you to write data to your relational database and has the IDatabaseDataWriter interface. It only takes 2 arguments: the name of your database and the IDatabaseValues to be inserted.
 
 ```c#
-var relationalDatabaseDataWriter = new RelationalDatabaseDataWriter(database, parametersStringFactory);
+var relationalDatabaseDataWriter = new RelationalDatabaseDataWriter(database, enumerationStringFactory);
 IDatabaseValue[] values = { new RelationalDatabaseValue("age", 19), new RelationalDatabaseValue("first_name", "Anatoliy"), new RelationalDatabaseValue("last_name", "Oleynikov") };
 relationalDatabaseDataWriter.WriteData("humans", values); //equals to "INSERT INTO humans (age, first_name, last_name) VALUES (19, 'Anatoliy', 'Oleynikov')"
 ```
@@ -62,7 +62,7 @@ relationalDatabaseDataWriter.WriteData("humans", values); //equals to "INSERT IN
 RelationalDatabaseDataReader allows you to read data from your relational database and has the IDatabaseDataReader interface. It takes 3 arguments: the name of the table, the names of the columns to be selected (optional, if you pass an empty array, then in the final query will be \*), and the IDatabaseValues by which the data will be selected (optional).
 
 ```c#
-var relationalDatabaseDataReader = new RelationalDatabaseDataReader(database, parametersStringFactory);
+var relationalDatabaseDataReader = new RelationalDatabaseDataReader(database, enumerationStringFactory);
 DataTable dataTable = relationalDatabaseDataReader.GetData("humans", new string[] { }); //equals to "SELECT * FROM humans"
 dataTable = relationalDatabaseDataReader.GetData("humans", new[] { "first_name" }, new IDatabaseValue[] { new RelationalDatabaseValue("age", 19) }); //equals to "SELECT first_name FROM humans WHERE age = 19"
 ```
@@ -72,7 +72,7 @@ dataTable = relationalDatabaseDataReader.GetData("humans", new[] { "first_name" 
 RelationalDatabaseDataUpdater allows you to update data in your relational database and has the IDatabaseDataUpdater interface. It takes 3 arguments, of which 2 are required: the name of the database and the IDatabaseValues by which the data will be replaced. The third argument is the IDatabaseValues that will be updated. If this argument is missing, all data in the table will be replaced, be careful.
 
 ```c#
-var relationalDatabaseDataUpdater = new RelationalDatabaseDataUpdater(database, parametersStringFactory);
+var relationalDatabaseDataUpdater = new RelationalDatabaseDataUpdater(database, enumerationStringFactory);
 var replacedArguments = new IDatabaseValue[] { new RelationalDatabaseValue("age", 20) };
 var argumentsWhichChanging = new IDatabaseValue[] { new RelationalDatabaseValue("first_name", "Anatoliy") };
 
@@ -85,7 +85,7 @@ relationalDatabaseDataUpdater.UpdateData("humans", replacedArguments); //equals 
 RelationalDatabaseDataDeleter allows you to delete data from your relational database and has the IDatabaseDataDeleter interface. It takes 2 arguments: the name of the database and the IDatabaseValues by which the data will be deleted.
 
 ```c#
-var relationalDatabaseDataDeleter = new RelationalDatabaseDataDeleter(database, parametersStringFactory);
+var relationalDatabaseDataDeleter = new RelationalDatabaseDataDeleter(database, enumerationStringFactory);
 IDatabaseValue[] values = { new RelationalDatabaseValue("age", 19), new RelationalDatabaseValue("first_name", "Anatoliy"), new RelationalDatabaseValue("last_name", "Oleynikov") };
 relationalDatabaseDataDeleter.DeleteData("humans", values); //equals to "DELETE FROM humans WHERE age = 19 AND first_name = 'Anatoliy' AND last_name = 'Oleynikov'"
 ```
