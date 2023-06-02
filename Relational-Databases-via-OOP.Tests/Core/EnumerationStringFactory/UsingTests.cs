@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace RelationalDatabasesViaOOP.Tests.EnumerationStringFactory
+namespace RelationalDatabasesViaOOP.Tests.Core.EnumerationStringFactory
 {
     public sealed class UsingTests
     {

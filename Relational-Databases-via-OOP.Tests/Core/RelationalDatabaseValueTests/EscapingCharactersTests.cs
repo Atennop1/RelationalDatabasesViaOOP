@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace RelationalDatabasesViaOOP.Tests.RelationalDatabaseValueTests
+namespace RelationalDatabasesViaOOP.Tests.Core.RelationalDatabaseValueTests
 {
     public sealed class EscapingCharactersTests
     {

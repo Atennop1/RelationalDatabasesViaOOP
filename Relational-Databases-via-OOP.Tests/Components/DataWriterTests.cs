@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 using NUnit.Framework;
-using RelationalDatabasesViaOOP.Tests.RelationalDatabaseTests;
+using RelationalDatabasesViaOOP.Tests.Core.RelationalDatabaseTests;
 
 namespace RelationalDatabasesViaOOP.Tests.Components
 {
