@@ -71,9 +71,26 @@ namespace RelationalDatabasesViaOOP.Tests.Components
             });
         }
         
-                
         [Test]
         public void IsBuildRequestCorrect4()
+        {
+            var result = (string)_buildRequestMethodInfo.Invoke(_databaseDataReader, new object?[] 
+            { 
+                "humans", 
+                new string[] { },
+                new IDatabaseValue[]
+                {
+                    new RelationalDatabaseValue("first_name", "grigoriy"),
+                    new RelationalDatabaseValue("last_name", "fedotkin")
+                } 
+            })!;
+            
+            Assert.That(result == "SELECT * FROM humans WHERE first_name = 'grigoriy' AND last_name = 'fedotkin'");
+        }
+        
+                
+        [Test]
+        public void IsBuildRequestCorrect5()
         {
             var result = (string)_buildRequestMethodInfo.Invoke(_databaseDataReader, new object?[] 
             { 
@@ -86,7 +103,7 @@ namespace RelationalDatabasesViaOOP.Tests.Components
         }
         
         [Test]
-        public void IsBuildRequestCorrect5()
+        public void IsBuildRequestCorrect6()
         {
             var result = (string)_buildRequestMethodInfo.Invoke(_databaseDataReader, new object?[] 
             { 

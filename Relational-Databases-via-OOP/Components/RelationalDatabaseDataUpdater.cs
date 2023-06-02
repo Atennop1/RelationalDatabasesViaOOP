@@ -32,7 +32,7 @@ namespace RelationalDatabasesViaOOP
             stringBuilder.Append($"UPDATE {databaseName} SET ");
             stringBuilder.Append(_enumerationStringFactory.Create(replacedValues.Select(argument => $"{argument.Name} = {argument.Get()}").ToArray(), " AND "));
 
-            if (valuesWhichChanging == null || replacedValues.Length == 0)
+            if (valuesWhichChanging == null || valuesWhichChanging.Length == 0)
                 return stringBuilder.ToString();
 
             stringBuilder.Append(" WHERE ");
