@@ -17,7 +17,7 @@ namespace RelationalDatabasesViaOOP
 
         public void UpdateData(string databaseName, IDatabaseValue[] replacedValues, IDatabaseValue[] valuesWhichChanging = null!)
         {
-            if (databaseName == null)
+            if (string.IsNullOrEmpty(databaseName))
                 throw new ArgumentNullException(nameof(databaseName));
 
             if (replacedValues == null || replacedValues.Length == 0)

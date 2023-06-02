@@ -17,7 +17,7 @@ namespace RelationalDatabasesViaOOP
 
         public void WriteData(string databaseName, IDatabaseValue[] valuesWhichWriting)
         {
-            if (databaseName == null)
+            if (string.IsNullOrEmpty(databaseName))
                 throw new ArgumentNullException(nameof(databaseName));
 
             if (valuesWhichWriting == null || valuesWhichWriting.Length == 0)

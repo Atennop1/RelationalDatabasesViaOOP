@@ -18,7 +18,7 @@ namespace RelationalDatabasesViaOOP
 
         public DataTable GetData(string databaseName, string[] columnsNames, IDatabaseValue[] valuesByWhichSelecting = null!)
         {
-            if (databaseName == null)
+            if (string.IsNullOrEmpty(databaseName))
                 throw new ArgumentNullException(nameof(databaseName));
 
             if (columnsNames == null)

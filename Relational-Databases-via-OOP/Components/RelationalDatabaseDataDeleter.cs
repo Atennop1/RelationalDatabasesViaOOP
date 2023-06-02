@@ -17,7 +17,7 @@ namespace RelationalDatabasesViaOOP
 
         public void DeleteData(string databaseName, IDatabaseValue[] valuesByWhichDeleting)
         {
-            if (databaseName == null)
+            if (string.IsNullOrEmpty(databaseName))
                 throw new ArgumentNullException(nameof(databaseName));
 
             if (valuesByWhichDeleting == null || valuesByWhichDeleting.Length == 0)
