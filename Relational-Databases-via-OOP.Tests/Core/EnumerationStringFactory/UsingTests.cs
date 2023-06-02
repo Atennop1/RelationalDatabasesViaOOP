@@ -6,7 +6,7 @@ namespace RelationalDatabasesViaOOP.Tests.EnumerationStringFactory
     {
         private IEnumerationStringFactory _factory;
 
-        [SetUp]
+        [OneTimeSetUp]
         public void Setup()
             => _factory = new RelationalDatabasesViaOOP.EnumerationStringFactory();
 
