@@ -35,7 +35,7 @@ Relational databases are databases **based on the relational data model** and SQ
 To get started, you will need to create the RelationalDatabase and EnumerationStringFactory components. The first one allows you to query a relational database in any mode (NonQuery, Scalar, Reader and async versions of them) and has an IDatabase interface, while the second one is used by other components for convenience and has an IEnumerationStringFactory interface. You won't need it to run queries directly.
 
 ```c#
-var database = new RelationalDatabase(@"Server=your server;Port=your port;User Id=your user id;Password=your password;Database=your DB name");
+var database = new RelationalDatabase(@"Server=*your server*;Port=*your port*;User Id=*your user id*;Password=*your password*;Database=*your DB name*");
 var enumerationStringFactory = new EnumerationStringFactory();
 ```
 
@@ -49,7 +49,7 @@ var value = new RelationalDatabaseValue("first_name", "Anatoliy");
 
 ### **RelationalDatabaseDataWriter**
 
-RelationalDatabaseDataWriter allows you to write data to your relational database and has the IDatabaseDataWriter interface. It only takes 2 arguments: the name of your database and the IDatabaseValues to be inserted.
+RelationalDatabaseDataWriter allows you to write data to your relational database and has the IDatabaseDataWriter interface. It only takes 2 arguments: the name of database table and the IDatabaseValues to be inserted.
 
 ```c#
 var relationalDatabaseDataWriter = new RelationalDatabaseDataWriter(database, enumerationStringFactory);
@@ -69,7 +69,7 @@ dataTable = relationalDatabaseDataReader.GetData("humans", new[] { "first_name" 
 
 ### **RelationalDatabaseDataUpdater** 
 
-RelationalDatabaseDataUpdater allows you to update data in your relational database and has the IDatabaseDataUpdater interface. It takes 3 arguments, of which 2 are required: the name of the database and the IDatabaseValues by which the data will be replaced. The third argument is the IDatabaseValues that will be updated. If this argument is missing, all data in the table will be replaced, be careful.
+RelationalDatabaseDataUpdater allows you to update data in your relational database and has the IDatabaseDataUpdater interface. It takes 3 arguments, of which 2 are required: the name of the database table and the IDatabaseValues by which the data will be replaced. The third argument is the IDatabaseValues that will be updated. If this argument is missing, all data in the table will be replaced, be careful.
 
 ```c#
 var relationalDatabaseDataUpdater = new RelationalDatabaseDataUpdater(database, enumerationStringFactory);
@@ -82,7 +82,7 @@ relationalDatabaseDataUpdater.UpdateData("humans", replacedArguments); //equals 
 
 ### **RelationalDatabaseDataDeleter**
 
-RelationalDatabaseDataDeleter allows you to delete data from your relational database and has the IDatabaseDataDeleter interface. It takes 2 arguments: the name of the database and the IDatabaseValues by which the data will be deleted.
+RelationalDatabaseDataDeleter allows you to delete data from your relational database and has the IDatabaseDataDeleter interface. It takes 2 arguments: the name of the database table and the IDatabaseValues by which the data will be deleted.
 
 ```c#
 var relationalDatabaseDataDeleter = new RelationalDatabaseDataDeleter(database, enumerationStringFactory);
