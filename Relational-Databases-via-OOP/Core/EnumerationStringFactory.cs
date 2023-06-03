@@ -3,6 +3,9 @@ using System.Text;
 
 namespace RelationalDatabasesViaOOP
 {
+    /// <summary>
+    /// Realisation of <b>IEnumerationStringFactory</b> interface
+    /// </summary>
     public sealed class EnumerationStringFactory : IEnumerationStringFactory
     {
         public string Create(string[] strings, string delimiter)

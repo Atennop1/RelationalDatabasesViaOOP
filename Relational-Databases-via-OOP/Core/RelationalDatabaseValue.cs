@@ -2,9 +2,12 @@
 
 namespace RelationalDatabasesViaOOP
 {
-    public class RelationalDatabaseValue : IDatabaseValue
+    /// <summary>
+    /// Realisation of <b>IDatabaseValue</b> interface for relational databases
+    /// </summary>
+    public sealed class RelationalDatabaseValue : IDatabaseValue
     {
-        public string Name { get; }
+        public string ColumnName { get; }
         private readonly object _value;
 
         public RelationalDatabaseValue(string name, object value)
@@ -22,7 +25,7 @@ namespace RelationalDatabasesViaOOP
                 name = name.Replace("'", "''");
             
             _value = value is string ? $"'{value}'" : value;
-            Name = name;
+            ColumnName = name;
         }
 
         public object Get()

@@ -6,6 +6,9 @@ using Npgsql;
 
 namespace RelationalDatabasesViaOOP
 {
+    /// <summary>
+    /// Realisation of <b>IDatabase</b> interface which is relational database
+    /// </summary>
     public sealed class RelationalDatabase : IDatabase
     {
         private readonly NpgsqlConnection _sqlConnection;

@@ -4,6 +4,9 @@ using System.Text;
 
 namespace RelationalDatabasesViaOOP
 {
+    /// <summary>
+    /// Realisation of <b>IDatabaseDataDeleter</b> interface for relational databases
+    /// </summary>
     public sealed class RelationalDatabaseDataDeleter : IDatabaseDataDeleter
     {
         private readonly IDatabase _database;
@@ -15,7 +18,7 @@ namespace RelationalDatabasesViaOOP
             _database = database ?? throw new ArgumentNullException(nameof(database));
         }
 
-        public void DeleteData(string tableName, IDatabaseValue[] valuesByWhichDeleting)
+        public void Delete(string tableName, IDatabaseValue[] valuesByWhichDeleting)
         {
             if (string.IsNullOrEmpty(tableName))
                 throw new ArgumentNullException(nameof(tableName));
@@ -31,7 +34,7 @@ namespace RelationalDatabasesViaOOP
             var stringBuilder = new StringBuilder();
             stringBuilder.Append($"DELETE FROM {tableName} WHERE ");
 
-            stringBuilder.Append(_enumerationStringFactory.Create(valuesByWhichDeleting.Select(argument => $"{argument.Name} = {argument.Get()}").ToArray(), " AND "));
+            stringBuilder.Append(_enumerationStringFactory.Create(valuesByWhichDeleting.Select(argument => $"{argument.ColumnName} = {argument.Get()}").ToArray(), " AND "));
             return stringBuilder.ToString();
         }
     }

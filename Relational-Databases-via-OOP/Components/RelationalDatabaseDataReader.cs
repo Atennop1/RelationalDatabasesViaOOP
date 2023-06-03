@@ -5,6 +5,9 @@ using System.Text;
 
 namespace RelationalDatabasesViaOOP
 {
+    /// <summary>
+    /// Realisation of <b>IDatabaseDataReader</b> interface for relational databases
+    /// </summary>
     public sealed class RelationalDatabaseDataReader : IDatabaseDataReader
     {
         private readonly IDatabase _database;
@@ -16,7 +19,7 @@ namespace RelationalDatabasesViaOOP
             _enumerationStringFactory = enumerationStringFactory ?? throw new ArgumentNullException(nameof(enumerationStringFactory));
         }
 
-        public DataTable GetData(string tableName, string[] columnsNames, IDatabaseValue[] valuesByWhichSelecting = null!)
+        public DataTable Read(string tableName, string[] columnsNames, IDatabaseValue[] valuesByWhichSelecting = null!)
         {
             if (string.IsNullOrEmpty(tableName))
                 throw new ArgumentNullException(nameof(tableName));
@@ -43,7 +46,7 @@ namespace RelationalDatabasesViaOOP
                 return stringBuilder.ToString();
             
             stringBuilder.Append(" WHERE ");
-            stringBuilder.Append(_enumerationStringFactory.Create(valuesByWhichSelecting.Select(argument => $"{argument.Name} = {argument.Get()}").ToArray(), " AND "));
+            stringBuilder.Append(_enumerationStringFactory.Create(valuesByWhichSelecting.Select(argument => $"{argument.ColumnName} = {argument.Get()}").ToArray(), " AND "));
             return stringBuilder.ToString();
         }
     }

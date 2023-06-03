@@ -4,6 +4,9 @@ using System.Text;
 
 namespace RelationalDatabasesViaOOP
 {
+    /// <summary>
+    /// Realisation of <b>IDatabaseDataWriter</b> interface for relational databases
+    /// </summary>
     public sealed class RelationalDatabaseDataWriter : IDatabaseDataWriter
     {
         private readonly IDatabase _database;
@@ -15,7 +18,7 @@ namespace RelationalDatabasesViaOOP
             _database = database ?? throw new ArgumentNullException(nameof(database));
         }
 
-        public void WriteData(string tableName, IDatabaseValue[] valuesWhichWriting)
+        public void Write(string tableName, IDatabaseValue[] valuesWhichWriting)
         {
             if (string.IsNullOrEmpty(tableName))
                 throw new ArgumentNullException(nameof(tableName));
@@ -31,7 +34,7 @@ namespace RelationalDatabasesViaOOP
             var stringBuilder = new StringBuilder();
             
             stringBuilder.Append($"INSERT INTO {tableName} (");
-            stringBuilder.Append(_enumerationStringFactory.Create(valuesWhichWriting.Select(argument => argument.Name).ToArray(), ", "));
+            stringBuilder.Append(_enumerationStringFactory.Create(valuesWhichWriting.Select(argument => argument.ColumnName).ToArray(), ", "));
             stringBuilder.Append(")");
             
             stringBuilder.Append(" VALUES (");
