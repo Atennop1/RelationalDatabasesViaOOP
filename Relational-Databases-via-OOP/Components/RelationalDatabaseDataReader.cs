@@ -16,28 +16,28 @@ namespace RelationalDatabasesViaOOP
             _enumerationStringFactory = enumerationStringFactory ?? throw new ArgumentNullException(nameof(enumerationStringFactory));
         }
 
-        public DataTable GetData(string databaseName, string[] columnsNames, IDatabaseValue[] valuesByWhichSelecting = null!)
+        public DataTable GetData(string tableName, string[] columnsNames, IDatabaseValue[] valuesByWhichSelecting = null!)
         {
-            if (string.IsNullOrEmpty(databaseName))
-                throw new ArgumentNullException(nameof(databaseName));
+            if (string.IsNullOrEmpty(tableName))
+                throw new ArgumentNullException(nameof(tableName));
 
             if (columnsNames == null)
                 throw new ArgumentNullException(nameof(columnsNames));
             
-            var dataReader = _database.SendReaderRequest(BuildRequest(databaseName, columnsNames, valuesByWhichSelecting));
+            var dataReader = _database.SendReaderRequest(BuildRequest(tableName, columnsNames, valuesByWhichSelecting));
             var dataTable = new DataTable();
             
             dataTable.Load(dataReader);
             return dataTable;
         }
 
-        private string BuildRequest(string databaseName, string[] columnsNames, IDatabaseValue[] valuesByWhichSelecting)
+        private string BuildRequest(string tableName, string[] columnsNames, IDatabaseValue[] valuesByWhichSelecting)
         {
             var stringBuilder = new StringBuilder();
             
             stringBuilder.Append("SELECT ");
             stringBuilder.Append(columnsNames.Length == 0 ? "*" : _enumerationStringFactory.Create(columnsNames, ", "));
-            stringBuilder.Append($" FROM {databaseName}");
+            stringBuilder.Append($" FROM {tableName}");
 
             if (valuesByWhichSelecting == null || valuesByWhichSelecting.Length == 0) 
                 return stringBuilder.ToString();

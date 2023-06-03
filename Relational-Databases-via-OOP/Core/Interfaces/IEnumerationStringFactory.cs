@@ -2,6 +2,6 @@
 {
     public interface IEnumerationStringFactory
     {
-        string Create(string[] names, string delimiter);
+        string Create(string[] strings, string delimiter);
     }
 }

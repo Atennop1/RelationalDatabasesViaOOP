@@ -15,21 +15,21 @@ namespace RelationalDatabasesViaOOP
             _enumerationStringFactory = enumerationStringFactory ?? throw new ArgumentNullException(nameof(enumerationStringFactory));
         }
 
-        public void UpdateData(string databaseName, IDatabaseValue[] replacedValues, IDatabaseValue[] valuesWhichChanging = null!)
+        public void UpdateData(string tableName, IDatabaseValue[] replacedValues, IDatabaseValue[] valuesWhichChanging = null!)
         {
-            if (string.IsNullOrEmpty(databaseName))
-                throw new ArgumentNullException(nameof(databaseName));
+            if (string.IsNullOrEmpty(tableName))
+                throw new ArgumentNullException(nameof(tableName));
 
             if (replacedValues == null || replacedValues.Length == 0)
                 throw new ArgumentNullException(nameof(replacedValues));
 
-            _database.SendNonQueryRequest(BuildRequest(databaseName, replacedValues, valuesWhichChanging));
+            _database.SendNonQueryRequest(BuildRequest(tableName, replacedValues, valuesWhichChanging));
         }
 
-        private string BuildRequest(string databaseName, IDatabaseValue[] replacedValues, IDatabaseValue[] valuesWhichChanging)
+        private string BuildRequest(string tableName, IDatabaseValue[] replacedValues, IDatabaseValue[] valuesWhichChanging)
         {
             var stringBuilder = new StringBuilder();
-            stringBuilder.Append($"UPDATE {databaseName} SET ");
+            stringBuilder.Append($"UPDATE {tableName} SET ");
             stringBuilder.Append(_enumerationStringFactory.Create(replacedValues.Select(argument => $"{argument.Name} = {argument.Get()}").ToArray(), " AND "));
 
             if (valuesWhichChanging == null || valuesWhichChanging.Length == 0)

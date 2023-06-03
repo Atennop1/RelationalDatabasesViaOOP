@@ -2,6 +2,6 @@
 {
     public interface IDatabaseDataUpdater
     {
-        void UpdateData(string databaseName, IDatabaseValue[] replacedValues, IDatabaseValue[] valuesWhichChanging);
+        void UpdateData(string tableName, IDatabaseValue[] replacedValues, IDatabaseValue[] valuesWhichChanging);
     }
 }

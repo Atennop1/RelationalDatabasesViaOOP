@@ -4,6 +4,6 @@ namespace RelationalDatabasesViaOOP
 {
     public interface IDatabaseDataReader
     {
-        DataTable GetData(string databaseName, string[] columnsNames, IDatabaseValue[] valuesByWhichSelecting = null!);
+        DataTable GetData(string tableName, string[] columnsNames, IDatabaseValue[] valuesByWhichSelecting = null!);
     }
 }

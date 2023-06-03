@@ -2,6 +2,6 @@
 {
     public interface IDatabaseDataDeleter
     {
-        void DeleteData(string databaseName, IDatabaseValue[] valuesByWhichDeleting);
+        void DeleteData(string tableName, IDatabaseValue[] valuesByWhichDeleting);
     }
 }

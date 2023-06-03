@@ -15,22 +15,22 @@ namespace RelationalDatabasesViaOOP
             _database = database ?? throw new ArgumentNullException(nameof(database));
         }
 
-        public void WriteData(string databaseName, IDatabaseValue[] valuesWhichWriting)
+        public void WriteData(string tableName, IDatabaseValue[] valuesWhichWriting)
         {
-            if (string.IsNullOrEmpty(databaseName))
-                throw new ArgumentNullException(nameof(databaseName));
+            if (string.IsNullOrEmpty(tableName))
+                throw new ArgumentNullException(nameof(tableName));
 
             if (valuesWhichWriting == null || valuesWhichWriting.Length == 0)
                 throw new ArgumentNullException(nameof(valuesWhichWriting));
             
-            _database.SendNonQueryRequest(BuildRequest(databaseName, valuesWhichWriting));
+            _database.SendNonQueryRequest(BuildRequest(tableName, valuesWhichWriting));
         }
 
-        private string BuildRequest(string databaseName, IDatabaseValue[] valuesWhichWriting)
+        private string BuildRequest(string tableName, IDatabaseValue[] valuesWhichWriting)
         {
             var stringBuilder = new StringBuilder();
             
-            stringBuilder.Append($"INSERT INTO {databaseName} (");
+            stringBuilder.Append($"INSERT INTO {tableName} (");
             stringBuilder.Append(_enumerationStringFactory.Create(valuesWhichWriting.Select(argument => argument.Name).ToArray(), ", "));
             stringBuilder.Append(")");
             

@@ -2,6 +2,6 @@
 {
     public interface IDatabaseDataWriter
     {
-        void WriteData(string databaseName, IDatabaseValue[] valuesWhichWriting);
+        void WriteData(string tableName, IDatabaseValue[] valuesWhichWriting);
     }
 }

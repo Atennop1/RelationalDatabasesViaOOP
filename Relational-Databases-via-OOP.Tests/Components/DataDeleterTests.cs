@@ -13,7 +13,7 @@ namespace RelationalDatabasesViaOOP.Tests.Components
         public void Setup()
         {
             var databaseFactory = new RelationalDatabasesFactory();
-            var enumerationStringFactory = new RelationalDatabasesViaOOP.EnumerationStringFactory();
+            var enumerationStringFactory = new EnumerationStringFactory();
             
             _databaseDataDeleter = new RelationalDatabaseDataDeleter(databaseFactory.Create(),enumerationStringFactory);
             _buildRequestMethodInfo = _databaseDataDeleter.GetType().GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)[0];
