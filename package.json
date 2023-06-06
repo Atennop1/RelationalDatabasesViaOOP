@@ -1,0 +1,16 @@
+{
+  "name": "com.atennopgames.relationaldatabasesviaoop",
+  "version": "1.2.0",
+  "displayName": "RelationalDatabasesViaOOP",
+  "description": "Simple OOP library for using relational database and having fun",
+  "unity": "2019.1",
+  "documentationUrl": "https://github.com/Atennop1/Relational-Databases-via-OOP",
+  "licensesUrl": "https://github.com/Atennop1/Relational-Databases-via-OOP/blob/master/LICENSE",
+  "author": {
+    "name": "Atennop",
+    "email": "atennopgames@gmail.com",
+    "url": "https://github.com/Atennop1"
+  },
+  "type": "library",
+  "dependencies": {}
+}

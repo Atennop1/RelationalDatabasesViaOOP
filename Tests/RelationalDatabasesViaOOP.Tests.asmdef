@@ -1,0 +1,19 @@
+{
+    "name": "RelationalDatabasesViaOOP.Tests",
+    "rootNamespace": "RelationalDatabasesViaOOP.Tests",
+    "references": [
+        "GUID:de63829a431d6884eb1db4e8184357cb"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll",
+        "Npgsql.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": true
+}

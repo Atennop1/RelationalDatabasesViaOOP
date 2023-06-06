@@ -1,0 +1,16 @@
+{
+    "name": "com.atennopgames.relationaldatabasesviaoop",
+    "rootNamespace": "RelationalDatabasesViaOOP",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "Npgsql.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": true
+}
