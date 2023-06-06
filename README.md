@@ -18,7 +18,7 @@
 
 ## **How to install**
 
-### Via NuGet into C# project
+### **Via NuGet into C# project**
 
 ```cmd
 cd DirectoryWithYourProject
@@ -27,7 +27,7 @@ dotnet restore
 ```
 Or you can visit [package page on Nuget](https://www.nuget.org/packages/RelationalDatabasesViaOOP) and install package from there
 
-### Via UPM into Unity project
+### **Via UPM into Unity project**
 
 Make sure you have standalone Git installed first.<br>
 Reboot after installation.<br>
