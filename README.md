@@ -18,12 +18,21 @@
 
 ## **How to install**
 
+### Via NuGet into C# project
+
 ```cmd
 cd DirectoryWithYourProject
 dotnet add package RelationalDatabasesViaOOP
 dotnet restore
 ```
 Or you can visit [package page on Nuget](https://www.nuget.org/packages/RelationalDatabasesViaOOP) and install package from there
+
+### Via UPM into Unity project
+
+Make sure you have standalone Git installed first.<br>
+Reboot after installation.<br>
+In Unity, open "Window" -> "Package Manager". Click the "+" sign on top left corner -> "Add package from git URL...".<br>
+Paste this: ```https://github.com/Atennop1/Relational-Databases-via-OOP.git```
 
 ## **How to use**
 
