@@ -1,8 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
-using RelationalDatabasesViaOOP.Runtime;
 
-namespace RelationalDatabasesViaOOP.Tests.Tests.Core.RelationalDatabaseValueTests
+namespace RelationalDatabasesViaOOP.Tests.Core.RelationalDatabaseValueTests
 {
     public sealed class CreationsTests
     {

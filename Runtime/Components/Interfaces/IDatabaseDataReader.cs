@@ -1,6 +1,6 @@
 ﻿using System.Data;
 
-namespace RelationalDatabasesViaOOP.Runtime
+namespace RelationalDatabasesViaOOP
 {
     /// <summary>
     /// Interface for object which will be read any data from database

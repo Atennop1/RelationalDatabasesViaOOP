@@ -1,9 +1,8 @@
 ﻿using System.Reflection;
 using NUnit.Framework;
-using RelationalDatabasesViaOOP.Runtime;
-using RelationalDatabasesViaOOP.Tests.Tests.Core.RelationalDatabaseTests;
+using RelationalDatabasesViaOOP.Tests.Core.RelationalDatabaseTests;
 
-namespace RelationalDatabasesViaOOP.Tests.Tests.Components
+namespace RelationalDatabasesViaOOP.Tests.Components
 {
     public sealed class DataWriterTests
     {

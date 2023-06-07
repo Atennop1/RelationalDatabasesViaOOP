@@ -2,9 +2,8 @@
 using System.Net.Sockets;
 using Npgsql;
 using NUnit.Framework;
-using RelationalDatabasesViaOOP.Runtime;
 
-namespace RelationalDatabasesViaOOP.Tests.Tests.Core.RelationalDatabaseTests
+namespace RelationalDatabasesViaOOP.Tests.Core.RelationalDatabaseTests
 {
     public sealed class CreationTests
     {

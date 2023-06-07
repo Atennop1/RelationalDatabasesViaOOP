@@ -1,6 +1,4 @@
-﻿using RelationalDatabasesViaOOP.Runtime;
-
-namespace RelationalDatabasesViaOOP.Tests.Tests.Core.RelationalDatabaseTests
+﻿namespace RelationalDatabasesViaOOP.Tests.Core.RelationalDatabaseTests
 {
     public sealed class RelationalDatabasesFactory
     {

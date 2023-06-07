@@ -1,4 +1,4 @@
-﻿namespace RelationalDatabasesViaOOP.Runtime
+﻿namespace RelationalDatabasesViaOOP
 {
     /// <summary>
     /// Interface for object which will be updating data in database

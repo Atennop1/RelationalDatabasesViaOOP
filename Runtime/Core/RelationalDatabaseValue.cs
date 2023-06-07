@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace RelationalDatabasesViaOOP.Runtime
+namespace RelationalDatabasesViaOOP
 {
     /// <summary>
     /// Realisation of <b>IDatabaseValue</b> interface for relational databases

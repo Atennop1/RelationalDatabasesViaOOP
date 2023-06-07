@@ -1,8 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
-using RelationalDatabasesViaOOP.Runtime;
 
-namespace RelationalDatabasesViaOOP.Tests.Tests.Core.EnumerationStringFactory
+namespace RelationalDatabasesViaOOP.Tests.Core.EnumerationStringFactory
 {
     public sealed class UsingTests
     {
@@ -10,7 +9,7 @@ namespace RelationalDatabasesViaOOP.Tests.Tests.Core.EnumerationStringFactory
 
         [OneTimeSetUp]
         public void Setup()
-            => _factory = new global::RelationalDatabasesViaOOP.Runtime.EnumerationStringFactory();
+            => _factory = new global::RelationalDatabasesViaOOP.EnumerationStringFactory();
 
         [Test]
         public void IsCreatingCorrect1()

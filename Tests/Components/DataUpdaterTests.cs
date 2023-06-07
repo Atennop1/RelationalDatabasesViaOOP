@@ -1,11 +1,11 @@
 ﻿#nullable enable
 using System.Reflection;
 using NUnit.Framework;
-using RelationalDatabasesViaOOP.Runtime;
-using RelationalDatabasesViaOOP.Tests.Tests.Core.RelationalDatabaseTests;
+using RelationalDatabasesViaOOP.Tests.Core.RelationalDatabaseTests;
+
 #pragma warning disable CS8602
 
-namespace RelationalDatabasesViaOOP.Tests.Tests.Components
+namespace RelationalDatabasesViaOOP.Tests.Components
 {
     public sealed class DataUpdaterTests
     {

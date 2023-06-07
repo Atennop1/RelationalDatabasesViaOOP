@@ -1,4 +1,4 @@
-﻿namespace RelationalDatabasesViaOOP.Runtime
+﻿namespace RelationalDatabasesViaOOP
 {
     /// <summary>
     /// Interface for factory to create enum strings

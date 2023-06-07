@@ -4,7 +4,7 @@ using System.Data;
 using System.Threading.Tasks;
 using Npgsql;
 
-namespace RelationalDatabasesViaOOP.Runtime
+namespace RelationalDatabasesViaOOP
 {
     /// <summary>
     /// Realisation of <b>IDatabase</b> interface which is relational database

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace RelationalDatabasesViaOOP.Runtime
+namespace RelationalDatabasesViaOOP
 {
     /// <summary>
     /// Realisation of <b>IEnumerationStringFactory</b> interface

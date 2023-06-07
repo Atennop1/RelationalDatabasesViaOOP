@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Text;
 
-namespace RelationalDatabasesViaOOP.Runtime
+namespace RelationalDatabasesViaOOP
 {
     /// <summary>
     /// Realisation of <b>IDatabaseDataUpdater</b> interface for relational databases
