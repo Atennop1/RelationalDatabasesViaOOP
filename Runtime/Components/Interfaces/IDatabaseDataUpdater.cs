@@ -17,10 +17,10 @@
         /// Values that will replace the original<br/>
         /// For example: <b>{ new RelationalDatabaseValue("age", 19) }</b>
         /// </param>
-        /// <param name="valuesWhichChanging">
-        /// Values to be replaced<br/>
+        /// <param name="valuesByWhichChanging">
+        /// Values by which data will be replaced<br/>
         /// For example: <b>{ new RelationalDatabaseValue("age", 15) }</b>
         /// </param>
-        void Update(string tableName, IDatabaseValue[] replacedValues, IDatabaseValue[] valuesWhichChanging);
+        void Update(string tableName, IDatabaseValue[] replacedValues, IDatabaseValue[] valuesByWhichChanging);
     }
 }

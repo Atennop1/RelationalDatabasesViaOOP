@@ -18,7 +18,7 @@ namespace RelationalDatabasesViaOOP
             _enumerationStringFactory = enumerationStringFactory ?? throw new ArgumentNullException(nameof(enumerationStringFactory));
         }
 
-        public void Update(string tableName, IDatabaseValue[] replacedValues, IDatabaseValue[] valuesWhichChanging = null!)
+        public void Update(string tableName, IDatabaseValue[] replacedValues, IDatabaseValue[] valuesByWhichChanging = null!)
         {
             if (string.IsNullOrEmpty(tableName))
                 throw new ArgumentNullException(nameof(tableName));
@@ -26,7 +26,7 @@ namespace RelationalDatabasesViaOOP
             if (replacedValues == null || replacedValues.Length == 0)
                 throw new ArgumentNullException(nameof(replacedValues));
 
-            _database.SendNonQueryRequest(BuildRequest(tableName, replacedValues, valuesWhichChanging));
+            _database.SendNonQueryRequest(BuildRequest(tableName, replacedValues, valuesByWhichChanging));
         }
 
         private string BuildRequest(string tableName, IDatabaseValue[] replacedValues, IDatabaseValue[] valuesWhichChanging)
