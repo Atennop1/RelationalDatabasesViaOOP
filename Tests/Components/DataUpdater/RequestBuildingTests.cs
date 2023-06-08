@@ -5,9 +5,9 @@ using RelationalDatabasesViaOOP.Tests.Core.RelationalDatabaseTests;
 
 #pragma warning disable CS8602
 
-namespace RelationalDatabasesViaOOP.Tests.Components
+namespace RelationalDatabasesViaOOP.Tests.Components.DataUpdater
 {
-    public sealed class DataUpdaterTests
+    public sealed class RequestBuildingTests
     {
         private IDatabaseDataUpdater? _databaseDataUpdater;
         private MethodInfo? _buildRequestMethodInfo;

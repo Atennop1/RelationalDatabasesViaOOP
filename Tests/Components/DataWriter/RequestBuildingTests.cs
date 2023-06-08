@@ -2,11 +2,11 @@
 using NUnit.Framework;
 using RelationalDatabasesViaOOP.Tests.Core.RelationalDatabaseTests;
 
-namespace RelationalDatabasesViaOOP.Tests.Components
+namespace RelationalDatabasesViaOOP.Tests.Components.DataWriter
 {
-    public sealed class DataDeleterTests
+    public sealed class RequestBuildingTests
     {
-        private IDatabaseDataDeleter _databaseDataDeleter;
+        private IDatabaseDataWriter _databaseDataWriter;
         private MethodInfo _buildRequestMethodInfo;
         
         [OneTimeSetUp]
@@ -15,14 +15,14 @@ namespace RelationalDatabasesViaOOP.Tests.Components
             var databaseFactory = new RelationalDatabasesFactory();
             var enumerationStringFactory = new EnumerationStringFactory();
             
-            _databaseDataDeleter = new RelationalDatabaseDataDeleter(databaseFactory.Create(),enumerationStringFactory);
-            _buildRequestMethodInfo = _databaseDataDeleter.GetType().GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)[0];
+            _databaseDataWriter = new RelationalDatabaseDataWriter(databaseFactory.Create(),enumerationStringFactory);
+            _buildRequestMethodInfo = _databaseDataWriter.GetType().GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)[0];
         }
 
         [Test]
         public void IsBuildRequestCorrect1()
         {
-            var result = (string)_buildRequestMethodInfo.Invoke(_databaseDataDeleter, new object[] 
+            var result = (string)_buildRequestMethodInfo.Invoke(_databaseDataWriter, new object[] 
             { 
                 "humans", 
                 new IDatabaseValue[]
@@ -32,14 +32,14 @@ namespace RelationalDatabasesViaOOP.Tests.Components
                 } 
             })!;
             
-            Assert.That(result == "DELETE FROM humans WHERE first_name = 'grigoriy' AND last_name = 'fedotkin'");
+            Assert.That(result == "INSERT INTO humans (first_name, last_name) VALUES ('grigoriy', 'fedotkin')");
         }
         
         [Test]
         public void IsBuildRequestCorrect2()
         {
-            var result = (string)_buildRequestMethodInfo.Invoke(_databaseDataDeleter, new object[] { "humans", new IDatabaseValue[] { } })!;
-            Assert.That(result == "DELETE FROM humans WHERE ");
+            var result = (string)_buildRequestMethodInfo.Invoke(_databaseDataWriter, new object[] { "humans", new IDatabaseValue[] { } })!;
+            Assert.That(result == "INSERT INTO humans () VALUES ()");
         }
         
         [Test]
@@ -47,15 +47,15 @@ namespace RelationalDatabasesViaOOP.Tests.Components
         {
             Assert.Throws<TargetInvocationException>(() =>
             {
-                _buildRequestMethodInfo.Invoke(_databaseDataDeleter, new object[] { "humans", null });
+                _buildRequestMethodInfo.Invoke(_databaseDataWriter, new object[] { "humans", null });
             }); 
         }
         
         [Test]
         public void IsBuildRequestCorrect4()
         {
-            var result = (string)_buildRequestMethodInfo.Invoke(_databaseDataDeleter, new object[] { null, new IDatabaseValue[] { } })!;
-            Assert.That(result == "DELETE FROM  WHERE ");
+            var result = (string)_buildRequestMethodInfo.Invoke(_databaseDataWriter, new object[] { null, new IDatabaseValue[] { } })!;
+            Assert.That(result == "INSERT INTO  () VALUES ()");
         }
     }
 }

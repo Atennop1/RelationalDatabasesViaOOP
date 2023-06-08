@@ -19,7 +19,8 @@
         /// </param>
         /// <param name="valuesByWhichChanging">
         /// Values by which data will be replaced<br/>
-        /// For example: <b>{ new RelationalDatabaseValue("age", 15) }</b>
+        /// For example: <b>{ new RelationalDatabaseValue("age", 15) }</b><br/>
+        /// Be careful, if this argument will be null or Length = 0, then all data in your table will be replaced
         /// </param>
         void Update(string tableName, IDatabaseValue[] replacedValues, IDatabaseValue[] valuesByWhichChanging);
     }

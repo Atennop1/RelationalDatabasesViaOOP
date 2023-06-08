@@ -18,7 +18,7 @@ namespace RelationalDatabasesViaOOP
             _enumerationStringFactory = enumerationStringFactory ?? throw new ArgumentNullException(nameof(enumerationStringFactory));
         }
 
-        public void Update(string tableName, IDatabaseValue[] replacedValues, IDatabaseValue[] valuesByWhichChanging = null!)
+        public void Update(string tableName, IDatabaseValue[] replacedValues, IDatabaseValue[] valuesByWhichChanging)
         {
             if (string.IsNullOrEmpty(tableName))
                 throw new ArgumentNullException(nameof(tableName));
@@ -29,17 +29,17 @@ namespace RelationalDatabasesViaOOP
             _database.SendNonQueryRequest(BuildRequest(tableName, replacedValues, valuesByWhichChanging));
         }
 
-        private string BuildRequest(string tableName, IDatabaseValue[] replacedValues, IDatabaseValue[] valuesWhichChanging)
+        private string BuildRequest(string tableName, IDatabaseValue[] replacedValues, IDatabaseValue[] valuesByWhichChanging)
         {
             var stringBuilder = new StringBuilder();
             stringBuilder.Append($"UPDATE {tableName} SET ");
             stringBuilder.Append(_enumerationStringFactory.Create(replacedValues.Select(argument => $"{argument.ColumnName} = {argument.Get()}").ToArray(), " AND "));
 
-            if (valuesWhichChanging == null || valuesWhichChanging.Length == 0)
+            if (valuesByWhichChanging == null || valuesByWhichChanging.Length == 0)
                 return stringBuilder.ToString();
 
             stringBuilder.Append(" WHERE ");
-            stringBuilder.Append(_enumerationStringFactory.Create(valuesWhichChanging.Select(argument => $"{argument.ColumnName} = {argument.Get()}").ToArray(), " AND "));
+            stringBuilder.Append(_enumerationStringFactory.Create(valuesByWhichChanging.Select(argument => $"{argument.ColumnName} = {argument.Get()}").ToArray(), " AND "));
             return stringBuilder.ToString();
         }
     }

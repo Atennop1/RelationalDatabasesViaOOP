@@ -2,9 +2,9 @@
 using NUnit.Framework;
 using RelationalDatabasesViaOOP.Tests.Core.RelationalDatabaseTests;
 
-namespace RelationalDatabasesViaOOP.Tests.Components
+namespace RelationalDatabasesViaOOP.Tests.Components.DataReader
 {
-    public sealed class DataReaderTests
+    public sealed class RequestBuildingTests
     {
         private IDatabaseDataReader _databaseDataReader;
         private MethodInfo _buildRequestMethodInfo;
