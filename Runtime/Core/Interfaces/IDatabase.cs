@@ -16,9 +16,9 @@ namespace RelationalDatabasesViaOOP
         /// Database query text
         /// </param>
         /// <returns>
-        /// DataReader with query result which you can unload to DataTable
+        /// DataTable with query result
         /// </returns>
-        IDataReader SendReaderRequest(string commandText);
+        DataTable SendReaderRequest(string commandText);
         
         /// <summary>
         /// A method for executing a request that does not return any value
@@ -49,9 +49,9 @@ namespace RelationalDatabasesViaOOP
         /// Database query text
         /// </param>
         /// <returns>
-        /// DataReader with query result which you can unload to DataTable
+        /// DataTable with query result
         /// </returns>
-        Task<IDataReader> SendReaderRequestAsync(string commandText);
+        Task<DataTable> SendReaderRequestAsync(string commandText);
         
         /// <summary>
         /// Async version of SendNonQuery request used for executing a request that does not return any value

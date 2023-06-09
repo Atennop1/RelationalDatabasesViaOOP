@@ -32,11 +32,14 @@ namespace RelationalDatabasesViaOOP
             _sqlConnection = new NpgsqlConnection(authorizationString);
         }
 
-        public IDataReader SendReaderRequest(string commandText)
+        public DataTable SendReaderRequest(string commandText)
         {
             commandText = AddEscapingCharactersToString(commandText);
             var command = new NpgsqlCommand(commandText, SQLConnection);
-            return command.ExecuteReader();
+
+            var dataTable = new DataTable();
+            dataTable.Load(command.ExecuteReader());
+            return dataTable;
         }
 
         public int SendNonQueryRequest(string commandText)
@@ -53,26 +56,14 @@ namespace RelationalDatabasesViaOOP
             return command.ExecuteScalar();
         }
         
-        public Task<IDataReader> SendReaderRequestAsync(string commandText)
-        {
-            commandText = AddEscapingCharactersToString(commandText);
-            var command = new NpgsqlCommand(commandText, SQLConnection);
-            return Task.FromResult((IDataReader)command.ExecuteReader());
-        }
-        
-        public Task<int> SendNonQueryRequestAsync(string commandText)
-        {
-            commandText = AddEscapingCharactersToString(commandText);
-            var command = new NpgsqlCommand(commandText, SQLConnection);
-            return Task.FromResult(command.ExecuteNonQuery());
-        }
+        public Task<DataTable> SendReaderRequestAsync(string commandText) 
+            => Task.FromResult(SendReaderRequest(commandText));
 
-        public Task<object?> SendScalarRequestAsync(string commandText)
-        {
-            commandText = AddEscapingCharactersToString(commandText);
-            var command = new NpgsqlCommand(commandText, SQLConnection);
-            return Task.FromResult(command.ExecuteScalar());
-        }
+        public Task<int> SendNonQueryRequestAsync(string commandText) 
+            => Task.FromResult(SendNonQueryRequest(commandText));
+
+        public Task<object?> SendScalarRequestAsync(string commandText) 
+            => Task.FromResult(SendScalarRequest(commandText));
 
         private string AddEscapingCharactersToString(string commandText)
         {
