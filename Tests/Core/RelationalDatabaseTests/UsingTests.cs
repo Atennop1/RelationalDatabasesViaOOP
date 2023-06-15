@@ -1,4 +1,4 @@
-﻿using System.Reflection;
+﻿using System;
 using NUnit.Framework;
 
 namespace RelationalDatabasesViaOOP.Tests.Core.RelationalDatabaseTests
@@ -8,28 +8,22 @@ namespace RelationalDatabasesViaOOP.Tests.Core.RelationalDatabaseTests
         private RelationalDatabase _database;
 
         [OneTimeSetUp]
-        public void Setup() 
+        public void OneTimeSetup() 
             => _database = new RelationalDatabasesFactory().Create();
 
-        [Test]
-        public void IsEscapingCharactersCorrect1()
-        {
-            Assert.That(() =>
-            {
-                var method = _database.GetType().GetMethod("AddEscapingCharactersToString", BindingFlags.NonPublic | BindingFlags.Instance);
-                var resultRequest = (string)method?.Invoke(_database, new object[] { "select * from !@#$%^&*()_+\\/,\"'" });
-                return resultRequest == "select * from !@#$%^&*()_+\\/,\"''";
-            });
-        }
+        [SetUp]
+        public void Setup()
+            => _database.SendNonQueryRequest("DELETE FROM humans");
 
         [Test]
-        public void IsEscapingCharactersCorrect2()
+        public void IsNonQueryRequestCorrect1() 
+            => Assert.Throws<ArgumentNullException>(() => _database.SendNonQueryRequest(null!));
+        
+        [Test]
+        public void IsNonQueryRequestCorrect2()
         {
-            Assert.Throws<TargetInvocationException>(() =>
-            {
-                var method = _database.GetType().GetMethod("AddEscapingCharactersToString", BindingFlags.NonPublic | BindingFlags.Instance);
-                method?.Invoke(_database, new object[] { null });
-            });
+            _database.SendNonQueryRequest("INSERT INTO humans (first_name) VALUES ('test')");
+            Assert.That((string)_database.SendReaderRequest("SELECT * FROM humans").Rows[0]["first_name"] == "test");
         }
     }
 }
