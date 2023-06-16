@@ -41,7 +41,7 @@ Relational databases are databases **based on the relational data model** and SQ
 
 ### **RelationalDatabase**
 
-To get started, you will need to create the RelationalDatabase and EnumerationStringFactory components. The first one allows you to query a relational database in any mode (NonQuery, Scalar, Reader and async versions of them) and has an IDatabase interface, while the second one is used by other components for convenience and has an IEnumerationStringFactory interface. You won't need it to run queries directly.
+To get started, you will need to create the RelationalDatabase and EnumerationStringFactory components. The first one allows you to query a relational database in any mode (NonQuery, Scalar, Reading and async versions of them) and has an IDatabase interface, while the second one is used by other components for convenience and has an IEnumerationStringFactory interface. You won't need it to run queries directly.
 
 ```c#
 var database = new RelationalDatabase(@"Server=*your server*;Port=*your port*;User Id=*your user id*;Password=*your password*;Database=*your DB name*");
@@ -63,7 +63,7 @@ RelationalDatabaseDataWriter allows you to write data to your relational databas
 ```c#
 var relationalDatabaseDataWriter = new RelationalDatabaseDataWriter(database, enumerationStringFactory);
 IDatabaseValue[] values = { new RelationalDatabaseValue("age", 19), new RelationalDatabaseValue("first_name", "Anatoliy"), new RelationalDatabaseValue("last_name", "Oleynikov") };
-relationalDatabaseDataWriter.WriteData("humans", values); //equals to "INSERT INTO humans (age, first_name, last_name) VALUES (19, 'Anatoliy', 'Oleynikov')"
+relationalDatabaseDataWriter.Write("humans", values); //equals to "INSERT INTO humans (age, first_name, last_name) VALUES (19, 'Anatoliy', 'Oleynikov')"
 ```
 
 ### **RelationalDatabaseDataReader**
@@ -72,8 +72,8 @@ RelationalDatabaseDataReader allows you to read data from your relational databa
 
 ```c#
 var relationalDatabaseDataReader = new RelationalDatabaseDataReader(database, enumerationStringFactory);
-DataTable dataTable = relationalDatabaseDataReader.GetData("humans", new string[] { }); //equals to "SELECT * FROM humans"
-dataTable = relationalDatabaseDataReader.GetData("humans", new[] { "first_name" }, new IDatabaseValue[] { new RelationalDatabaseValue("age", 19) }); //equals to "SELECT first_name FROM humans WHERE age = 19"
+DataTable dataTable = relationalDatabaseDataReader.Read("humans", new string[] { }); //equals to "SELECT * FROM humans"
+dataTable = relationalDatabaseDataReader.Read("humans", new[] { "first_name" }, new IDatabaseValue[] { new RelationalDatabaseValue("age", 19) }); //equals to "SELECT first_name FROM humans WHERE age = 19"
 ```
 
 ### **RelationalDatabaseDataUpdater** 
@@ -85,8 +85,8 @@ var relationalDatabaseDataUpdater = new RelationalDatabaseDataUpdater(database, 
 var replacedArguments = new IDatabaseValue[] { new RelationalDatabaseValue("age", 20) };
 var argumentsWhichChanging = new IDatabaseValue[] { new RelationalDatabaseValue("first_name", "Anatoliy") };
 
-relationalDatabaseDataUpdater.UpdateData("humans", replacedArguments, argumentsWhichChanging); //equals to "UPDATE humans SET age = 20 WHERE first_name = 'Anatoliy'"
-relationalDatabaseDataUpdater.UpdateData("humans", replacedArguments); //equals to "UPDATE humans SET age = 20"
+relationalDatabaseDataUpdater.Update("humans", replacedArguments, argumentsWhichChanging); //equals to "UPDATE humans SET age = 20 WHERE first_name = 'Anatoliy'"
+relationalDatabaseDataUpdater.Update("humans", replacedArguments); //equals to "UPDATE humans SET age = 20"
 ```
 
 ### **RelationalDatabaseDataDeleter**
@@ -96,7 +96,7 @@ RelationalDatabaseDataDeleter allows you to delete data from your relational dat
 ```c#
 var relationalDatabaseDataDeleter = new RelationalDatabaseDataDeleter(database, enumerationStringFactory);
 IDatabaseValue[] values = { new RelationalDatabaseValue("age", 19), new RelationalDatabaseValue("first_name", "Anatoliy"), new RelationalDatabaseValue("last_name", "Oleynikov") };
-relationalDatabaseDataDeleter.DeleteData("humans", values); //equals to "DELETE FROM humans WHERE age = 19 AND first_name = 'Anatoliy' AND last_name = 'Oleynikov'"
+relationalDatabaseDataDeleter.Delete("humans", values); //equals to "DELETE FROM humans WHERE age = 19 AND first_name = 'Anatoliy' AND last_name = 'Oleynikov'"
 ```
 
 ## **Conclusion**
