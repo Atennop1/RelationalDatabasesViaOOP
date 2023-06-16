@@ -32,29 +32,38 @@ namespace RelationalDatabasesViaOOP
             _sqlConnection = new NpgsqlConnection(authorizationString);
         }
 
-        public DataTable SendReaderRequest(string commandText)
+        public DataTable SendReadingRequest(string commandText)
         {
+            if (commandText == null)
+                throw new ArgumentNullException(nameof(commandText));
+            
             var command = new NpgsqlCommand(commandText, SQLConnection);
-
             var dataTable = new DataTable();
+            
             dataTable.Load(command.ExecuteReader());
             return dataTable;
         }
 
         public int SendNonQueryRequest(string commandText)
         {
+            if (commandText == null)
+                throw new ArgumentNullException(nameof(commandText));
+            
             var command = new NpgsqlCommand(commandText, SQLConnection);
             return command.ExecuteNonQuery();
         }
 
         public object? SendScalarRequest(string commandText)
         {
+            if (commandText == null)
+                throw new ArgumentNullException(nameof(commandText));
+            
             var command = new NpgsqlCommand(commandText, SQLConnection);
             return command.ExecuteScalar();
         }
         
-        public Task<DataTable> SendReaderRequestAsync(string commandText) 
-            => Task.FromResult(SendReaderRequest(commandText));
+        public Task<DataTable> SendReadingRequestAsync(string commandText) 
+            => Task.FromResult(SendReadingRequest(commandText));
 
         public Task<int> SendNonQueryRequestAsync(string commandText) 
             => Task.FromResult(SendNonQueryRequest(commandText));

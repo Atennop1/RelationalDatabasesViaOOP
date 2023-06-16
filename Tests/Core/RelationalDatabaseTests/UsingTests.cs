@@ -23,7 +23,31 @@ namespace RelationalDatabasesViaOOP.Tests.Core.RelationalDatabaseTests
         public void IsNonQueryRequestCorrect2()
         {
             _database.SendNonQueryRequest("INSERT INTO humans (first_name) VALUES ('test')");
-            Assert.That((string)_database.SendReaderRequest("SELECT * FROM humans").Rows[0]["first_name"] == "test");
+            Assert.That((string)_database.SendReadingRequest("SELECT * FROM humans").Rows[0]["first_name"] == "test");
+        }
+        
+        [Test]
+        public void IsReadingRequestCorrect1() 
+            => Assert.Throws<ArgumentNullException>(() => _database.SendReadingRequest(null!));
+        
+        [Test]
+        public void IsReadingRequestCorrect2()
+        {
+            _database.SendNonQueryRequest("INSERT INTO humans (first_name) VALUES ('test')");
+            var data = _database.SendReadingRequest("SELECT * FROM humans");
+            Assert.That((string)data.Rows[0]["first_name"] == "test");
+        }
+        
+        [Test]
+        public void IsScalarRequestCorrect1() 
+            => Assert.Throws<ArgumentNullException>(() => _database.SendScalarRequest(null!));
+        
+        [Test]
+        public void IsScalarRequestCorrect2()
+        {
+            _database.SendNonQueryRequest("INSERT INTO humans (age) VALUES (13)");
+            var data = _database.SendScalarRequest("SELECT * FROM humans");
+            Assert.That(data != null && (int)data == 13);
         }
     }
 }

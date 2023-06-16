@@ -27,7 +27,7 @@ namespace RelationalDatabasesViaOOP
             if (columnsNames == null)
                 throw new ArgumentNullException(nameof(columnsNames));
             
-            return _database.SendReaderRequest(BuildRequest(tableName, columnsNames, valuesByWhichSelecting));
+            return _database.SendReadingRequest(BuildRequest(tableName, columnsNames, valuesByWhichSelecting));
         }
 
         private string BuildRequest(string tableName, string[] columnsNames, IDatabaseValue[] valuesByWhichSelecting)
