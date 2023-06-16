@@ -34,7 +34,6 @@ namespace RelationalDatabasesViaOOP
 
         public DataTable SendReaderRequest(string commandText)
         {
-            commandText = AddEscapingCharactersToString(commandText);
             var command = new NpgsqlCommand(commandText, SQLConnection);
 
             var dataTable = new DataTable();
@@ -44,14 +43,12 @@ namespace RelationalDatabasesViaOOP
 
         public int SendNonQueryRequest(string commandText)
         {
-            commandText = AddEscapingCharactersToString(commandText);
             var command = new NpgsqlCommand(commandText, SQLConnection);
             return command.ExecuteNonQuery();
         }
 
         public object? SendScalarRequest(string commandText)
         {
-            commandText = AddEscapingCharactersToString(commandText);
             var command = new NpgsqlCommand(commandText, SQLConnection);
             return command.ExecuteScalar();
         }
@@ -64,16 +61,5 @@ namespace RelationalDatabasesViaOOP
 
         public Task<object?> SendScalarRequestAsync(string commandText) 
             => Task.FromResult(SendScalarRequest(commandText));
-
-        private string AddEscapingCharactersToString(string commandText)
-        {
-            if (commandText == null)
-                throw new ArgumentNullException(nameof(commandText));
-            
-            if (commandText.IndexOf("'", StringComparison.Ordinal) != -1)
-                commandText = commandText.Replace("'", "''");
-
-            return commandText;
-        }
     }
 }
