@@ -6,14 +6,20 @@ namespace RelationalDatabasesViaOOP.Tests.Components.DataWriter
 {
     public sealed class UsingTests
     {
+        private IDatabase _database;
         private IDatabaseDataWriter _dataWriter;
 
         [OneTimeSetUp]
-        public void Setup()
+        public void OneTimeSetUp()
         {
             var databaseFactory = new RelationalDatabasesFactory();
-            _dataWriter = new RelationalDatabaseDataWriter(databaseFactory.Create(), new EnumerationStringFactory());
+            _database = databaseFactory.Create();
+            _dataWriter = new RelationalDatabaseDataWriter(_database, new EnumerationStringFactory());
         }
+        
+        [SetUp]
+        public void Setup()
+            => _database.SendNonQueryRequest("DELETE FROM humans");
         
         [Test]
         public void IsUsingCorrect1()
@@ -47,6 +53,16 @@ namespace RelationalDatabasesViaOOP.Tests.Components.DataWriter
                 var valuesWhichWriting = new IDatabaseValue[] { new RelationalDatabaseValue("first_name", 10) };
                 _dataWriter.Write(null, valuesWhichWriting);
             });
+        }
+        
+        [Test]
+        public void IsUsingCorrect5()
+        {
+            var tableBeforeWriting = _database.SendReadingRequest("SELECT * FROM humans");
+            _database.SendNonQueryRequest("INSERT INTO humans (first_name) VALUES ('test')");
+
+            var tableAfterWriting = _database.SendReadingRequest("SELECT * FROM humans");
+            Assert.That(tableBeforeWriting.Rows.Count == 0 && tableAfterWriting.Rows.Count == 1 && (string)tableAfterWriting.Rows[0]["first_name"] == "test");
         }
     }
 }

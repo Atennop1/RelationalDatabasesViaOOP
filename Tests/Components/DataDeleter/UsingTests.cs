@@ -6,14 +6,20 @@ namespace RelationalDatabasesViaOOP.Tests.Components.DataDeleter
 {
     public sealed class UsingTests
     {
+        private IDatabase _database;
         private IDatabaseDataDeleter _dataDeleter;
 
         [OneTimeSetUp]
-        public void Setup()
+        public void OneTimeSetUp()
         {
             var databaseFactory = new RelationalDatabasesFactory();
-            _dataDeleter = new RelationalDatabaseDataDeleter(databaseFactory.Create(), new EnumerationStringFactory());
+            _database = databaseFactory.Create();
+            _dataDeleter = new RelationalDatabaseDataDeleter(_database, new EnumerationStringFactory());
         }
+
+        [SetUp]
+        public void Setup()
+            => _database.SendNonQueryRequest("DELETE FROM humans");
         
         [Test]
         public void IsUsingCorrect1()
@@ -47,6 +53,18 @@ namespace RelationalDatabasesViaOOP.Tests.Components.DataDeleter
                 var valuesByWhichDeleting = new IDatabaseValue[] { new RelationalDatabaseValue("first_name", 10) };
                 _dataDeleter.Delete(null, valuesByWhichDeleting);
             });
+        }
+
+        [Test]
+        public void IsUsingCorrect5()
+        {
+            _database.SendNonQueryRequest("INSERT INTO humans (first_name) VALUES ('test')");
+            var tableBeforeDeleting = _database.SendReadingRequest("SELECT * FROM humans");
+            
+            _dataDeleter.Delete("humans", new IDatabaseValue[] { new RelationalDatabaseValue("first_name", "test") });
+            var tableAfterDeleting = _database.SendReadingRequest("SELECT * FROM humans");
+            
+            Assert.That(tableBeforeDeleting.Rows.Count == 1 && (string)tableBeforeDeleting.Rows[0]["first_name"] == "test" && tableAfterDeleting.Rows.Count == 0);
         }
     }
 }

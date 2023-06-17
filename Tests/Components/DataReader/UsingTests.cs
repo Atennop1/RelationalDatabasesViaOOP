@@ -6,14 +6,20 @@ namespace RelationalDatabasesViaOOP.Tests.Components.DataReader
 {
     public sealed class UsingTests
     {
+        private IDatabase _database;
         private IDatabaseDataReader _dataReader;
 
         [OneTimeSetUp]
-        public void Setup()
+        public void OneTimeSetUp()
         {
             var databaseFactory = new RelationalDatabasesFactory();
-            _dataReader = new RelationalDatabaseDataReader(databaseFactory.Create(), new EnumerationStringFactory());
+            _database = databaseFactory.Create();
+            _dataReader = new RelationalDatabaseDataReader(_database, new EnumerationStringFactory());
         }
+        
+        [SetUp]
+        public void Setup()
+            => _database.SendNonQueryRequest("DELETE FROM humans");
 
         [Test]
         public void IsUsingCorrect1() 
@@ -42,23 +48,43 @@ namespace RelationalDatabasesViaOOP.Tests.Components.DataReader
         [Test]
         public void IsUsingCorrect4()
         {
+            _database.SendNonQueryRequest("INSERT INTO humans (first_name) VALUES ('test')");
             var columnNames = new string[] { };
-            _dataReader.Read("humans", columnNames);
+            
+            var dataTable = _dataReader.Read("humans", columnNames);
+            Assert.That(dataTable.Rows.Count == 1 && (string)dataTable.Rows[0]["first_name"] == "test");
         }
         
         [Test]
         public void IsUsingCorrect5()
         {
+            _database.SendNonQueryRequest("INSERT INTO humans (first_name) VALUES ('test')");
             var columnNames = new string[] { };
-            var valuesByWhichSelecting = new IDatabaseValue[] { };
-            _dataReader.Read("humans", columnNames, valuesByWhichSelecting);
+            var valuesByWhichSelecting = new IDatabaseValue[] { new RelationalDatabaseValue("first_name", "not test")};
+            
+            var dataTable = _dataReader.Read("humans", columnNames, valuesByWhichSelecting);
+            Assert.That(dataTable.Rows.Count == 0);
         }
         
         [Test]
         public void IsUsingCorrect6()
         {
+            _database.SendNonQueryRequest("INSERT INTO humans (first_name) VALUES ('test')");
             var columnNames = new string[] { };
-            _dataReader.Read("humans", columnNames, null);
+            var valuesByWhichSelecting = new IDatabaseValue[] { new RelationalDatabaseValue("first_name", "test")};
+            
+            var dataTable = _dataReader.Read("humans", columnNames, valuesByWhichSelecting);
+            Assert.That(dataTable.Rows.Count == 1 && (string)dataTable.Rows[0]["first_name"] == "test");
+        }
+        
+        [Test]
+        public void IsUsingCorrect7()
+        {
+            _database.SendNonQueryRequest("INSERT INTO humans (first_name) VALUES ('test')");
+            var columnNames = new[] { "first_name" };
+            
+            var dataTable = _dataReader.Read("humans", columnNames, null);
+            Assert.That(dataTable.Columns.Count == 1 && (string)dataTable.Rows[0]["first_name"] == "test");
         }
     }
 }
