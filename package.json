@@ -1,6 +1,6 @@
 {
   "name": "com.atennopgames.relationaldatabasesviaoop",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "displayName": "RelationalDatabasesViaOOP",
   "description": "Simple OOP library for using relational database and having fun",
   "unity": "2019.1",
