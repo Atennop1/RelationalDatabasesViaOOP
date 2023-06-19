@@ -20,6 +20,8 @@ namespace RelationalDatabasesViaOOP
 
         public void Update(string tableName, IDatabaseValue[] replacedValues, IDatabaseValue[] valuesByWhichChanging)
         {
+            tableName = tableName.Replace("'", "''");
+            
             if (string.IsNullOrEmpty(tableName))
                 throw new ArgumentNullException(nameof(tableName));
 

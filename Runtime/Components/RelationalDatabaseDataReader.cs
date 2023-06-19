@@ -21,6 +21,9 @@ namespace RelationalDatabasesViaOOP
 
         public DataTable Read(string tableName, string[] columnsNames, IDatabaseValue[] valuesByWhichSelecting = null!)
         {
+            tableName = tableName.Replace("'", "''");
+            columnsNames = columnsNames.ToList().Select(name => name.Replace("'", "''")).ToArray();
+            
             if (string.IsNullOrEmpty(tableName))
                 throw new ArgumentNullException(nameof(tableName));
 

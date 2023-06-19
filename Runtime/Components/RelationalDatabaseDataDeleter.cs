@@ -20,6 +20,8 @@ namespace RelationalDatabasesViaOOP
 
         public void Delete(string tableName, IDatabaseValue[] valuesByWhichDeleting)
         {
+            tableName = tableName.Replace("'", "''");
+            
             if (string.IsNullOrEmpty(tableName))
                 throw new ArgumentNullException(nameof(tableName));
 

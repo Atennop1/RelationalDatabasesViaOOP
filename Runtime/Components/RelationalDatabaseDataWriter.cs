@@ -20,6 +20,8 @@ namespace RelationalDatabasesViaOOP
 
         public void Write(string tableName, IDatabaseValue[] valuesWhichWriting)
         {
+            tableName = tableName.Replace("'", "''");
+            
             if (string.IsNullOrEmpty(tableName))
                 throw new ArgumentNullException(nameof(tableName));
 
