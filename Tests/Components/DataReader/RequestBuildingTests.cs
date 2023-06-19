@@ -25,7 +25,7 @@ namespace RelationalDatabasesViaOOP.Tests.Components.DataReader
             var result = (string)_buildRequestMethodInfo.Invoke(_databaseDataReader, new object[] 
             { 
                 "humans", 
-                new [] { "first_name", "last_name" },
+                new [] { "fir'st_name", "last_n'ame" },
                 new IDatabaseValue[]
                 {
                     new RelationalDatabaseValue("first_name", "grigoriy"),
@@ -33,7 +33,8 @@ namespace RelationalDatabasesViaOOP.Tests.Components.DataReader
                 } 
             })!;
             
-            Assert.That(result == "SELECT first_name, last_name FROM humans WHERE first_name = 'grigoriy' AND last_name = 'fedotkin'");
+            TestContext.Out.WriteLine(result);
+            Assert.That(result == "SELECT fir''st_name, last_n''ame FROM humans WHERE first_name = 'grigoriy' AND last_name = 'fedotkin'");
         }
         
         [Test]
@@ -113,6 +114,19 @@ namespace RelationalDatabasesViaOOP.Tests.Components.DataReader
             })!;
             
             Assert.That(result == "SELECT first_name, last_name FROM humans");
+        }
+        
+        [Test]
+        public void IsBuildRequestCorrect7()
+        {
+            var result = (string)_buildRequestMethodInfo.Invoke(_databaseDataReader, new object[] 
+            { 
+                "huma'ns", 
+                new [] { "first_name", "last_name" },
+                new RelationalDatabaseValue[] { } 
+            })!;
+            
+            Assert.That(result == "SELECT first_name, last_name FROM huma''ns");
         }
     }
 }

@@ -20,11 +20,9 @@ namespace RelationalDatabasesViaOOP
 
         public void Delete(string tableName, IDatabaseValue[] valuesByWhichDeleting)
         {
-            tableName = tableName.Replace("'", "''");
-            
             if (string.IsNullOrEmpty(tableName))
                 throw new ArgumentNullException(nameof(tableName));
-
+            
             if (valuesByWhichDeleting == null || valuesByWhichDeleting.Length == 0)
                 throw new ArgumentNullException(nameof(valuesByWhichDeleting));
             
@@ -33,6 +31,8 @@ namespace RelationalDatabasesViaOOP
 
         private string BuildRequest(string tableName, IDatabaseValue[] valuesByWhichDeleting)
         {
+            tableName = tableName?.Replace("'", "''");
+            
             var stringBuilder = new StringBuilder();
             stringBuilder.Append($"DELETE FROM {tableName} WHERE ");
 

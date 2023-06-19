@@ -20,20 +20,20 @@ namespace RelationalDatabasesViaOOP
 
         public void Update(string tableName, IDatabaseValue[] replacedValues, IDatabaseValue[] valuesByWhichChanging)
         {
-            tableName = tableName.Replace("'", "''");
-            
             if (string.IsNullOrEmpty(tableName))
                 throw new ArgumentNullException(nameof(tableName));
 
             if (replacedValues == null || replacedValues.Length == 0)
                 throw new ArgumentNullException(nameof(replacedValues));
-
+            
             _database.SendNonQueryRequest(BuildRequest(tableName, replacedValues, valuesByWhichChanging));
         }
 
         private string BuildRequest(string tableName, IDatabaseValue[] replacedValues, IDatabaseValue[] valuesByWhichChanging)
         {
+            tableName = tableName?.Replace("'", "''");
             var stringBuilder = new StringBuilder();
+            
             stringBuilder.Append($"UPDATE {tableName} SET ");
             stringBuilder.Append(_enumerationStringFactory.Create(replacedValues.Select(argument => $"{argument.ColumnName} = {argument.Get()}").ToArray(), " AND "));
 

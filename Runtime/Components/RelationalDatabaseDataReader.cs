@@ -21,9 +21,6 @@ namespace RelationalDatabasesViaOOP
 
         public DataTable Read(string tableName, string[] columnsNames, IDatabaseValue[] valuesByWhichSelecting = null!)
         {
-            tableName = tableName.Replace("'", "''");
-            columnsNames = columnsNames.ToList().Select(name => name.Replace("'", "''")).ToArray();
-            
             if (string.IsNullOrEmpty(tableName))
                 throw new ArgumentNullException(nameof(tableName));
 
@@ -35,10 +32,12 @@ namespace RelationalDatabasesViaOOP
 
         private string BuildRequest(string tableName, string[] columnsNames, IDatabaseValue[] valuesByWhichSelecting)
         {
+            tableName = tableName?.Replace("'", "''");
+            columnsNames = columnsNames?.ToList().Select(name => name.Replace("'", "''")).ToArray();
             var stringBuilder = new StringBuilder();
             
             stringBuilder.Append("SELECT ");
-            stringBuilder.Append(columnsNames.Length == 0 ? "*" : _enumerationStringFactory.Create(columnsNames, ", "));
+            stringBuilder.Append(columnsNames?.Length == 0 ? "*" : _enumerationStringFactory.Create(columnsNames, ", "));
             stringBuilder.Append($" FROM {tableName}");
 
             if (valuesByWhichSelecting == null || valuesByWhichSelecting.Length == 0) 

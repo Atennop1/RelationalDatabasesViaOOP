@@ -133,5 +133,22 @@ namespace RelationalDatabasesViaOOP.Tests.Components.DataUpdater
             
             Assert.That(result == "UPDATE humans SET first_name = 'anatoliy' AND last_name = 'oleynikov'");
         }
+        
+        [Test]
+        public void IsBuildRequestCorrect7()
+        {
+            var result = (string)_buildRequestMethodInfo.Invoke(_databaseDataUpdater, new object?[] 
+            { 
+                "huma''ns", 
+                new IDatabaseValue[]
+                {
+                    new RelationalDatabaseValue("first_name", "anatoliy"),
+                    new RelationalDatabaseValue("last_name", "oleynikov")
+                },
+                new RelationalDatabaseValue[] { } 
+            })!;
+            
+            Assert.That(result == "UPDATE huma''''ns SET first_name = 'anatoliy' AND last_name = 'oleynikov'");
+        }
     }
 }

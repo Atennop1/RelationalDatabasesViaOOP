@@ -57,5 +57,12 @@ namespace RelationalDatabasesViaOOP.Tests.Components.DataDeleter
             var result = (string)_buildRequestMethodInfo.Invoke(_databaseDataDeleter, new object[] { null, new IDatabaseValue[] { } })!;
             Assert.That(result == "DELETE FROM  WHERE ");
         }
+        
+        [Test]
+        public void IsBuildRequestCorrect5()
+        {
+            var result = (string)_buildRequestMethodInfo.Invoke(_databaseDataDeleter, new object[] { "hum'ans", new IDatabaseValue[] { } })!;
+            Assert.That(result == "DELETE FROM hum''ans WHERE ");
+        }
     }
 }

@@ -57,5 +57,12 @@ namespace RelationalDatabasesViaOOP.Tests.Components.DataWriter
             var result = (string)_buildRequestMethodInfo.Invoke(_databaseDataWriter, new object[] { null, new IDatabaseValue[] { } })!;
             Assert.That(result == "INSERT INTO  () VALUES ()");
         }
+        
+        [Test]
+        public void IsBuildRequestCorrect5()
+        {
+            var result = (string)_buildRequestMethodInfo.Invoke(_databaseDataWriter, new object[] { "huma'ns", new IDatabaseValue[] { } })!;
+            Assert.That(result == "INSERT INTO huma''ns () VALUES ()");
+        }
     }
 }
