@@ -104,4 +104,4 @@ relationalDatabaseDataDeleter.Delete("humans", values); //equals to "DELETE FROM
 Now you know how to install and use the components of this library. Don't forget that if the library's CRUD components don't allow you to execute the commands you need or don't allow you to do all the necessary actions in one query, then you can always use RelationalDatabase, which reduces command execution to one line and allows you to use the full power of SQL. Thanks for reading this and using the library. Good luck with your projects!
 
 From Atennop with OOP and ❤
-<br>Thanks to [Farid](https://github.com/Farid357) for the good renaming according to all the canons of OOP
+<br>Thanks to my colleague and friend [**Farid**](https://github.com/Farid357) for the good renaming according to all the canons of OOP
