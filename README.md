@@ -29,10 +29,8 @@ Or you can visit [**package page on Nuget**](https://www.nuget.org/packages/Rela
 
 ### **Via UPM into Unity project**
 
-Make sure you have standalone Git installed first.<br>
-Reboot after installation.<br>
-In Unity, open "Window" -> "Package Manager". Click the "+" sign on top left corner -> "Add package from git URL...".<br>
-Paste this: ```https://github.com/Atennop1/Relational-Databases-via-OOP.git```
+First make sure you have standalone Git installed. Reboot after installation.<br>
+In Unity, open "Window" -> "Package Manager". Click the "+" sign on top left corner, then "Add package from git URL..." and paste this: ```https://github.com/Atennop1/Relational-Databases-via-OOP.git```
 
 ## **How to use**
 
